@@ -3,7 +3,7 @@ import { updateState } from './reducerUtil';
 
 const initialAction = {
     destinations: [],
-    isDestinationLoading: false,
+    isDestinationLoading: true,
     status: '',
     statusCode: '',
     errorMessage: '',
@@ -13,7 +13,7 @@ const initialAction = {
 const destinationReducer = (state = initialAction, action) => {
     switch (action.type) {
         case DESTINATION_ACTION_TYPES.GET_DESTINATIONS:
-            return updateState(state, action.payload, { isDestinationLoading: true });
+            return updateState(state, action.payload);
 
         case DESTINATION_ACTION_TYPES.GET_DESTINATIONS_SUCCESS:
         case DESTINATION_ACTION_TYPES.GET_DESTINATIONS_FAILED:

@@ -41,7 +41,7 @@ export const JourneyCard = React.memo(({ index, listOfDestination, listOfVehicle
             <VehicleList
                 key={`${(selectedDestination || {}).name}-${index}`}
                 listOfVehicles={listOfVehicles}
-                planetDistance={selectedDestination.distance}
+                planetDistance={(selectedDestination || {}).distance || 0}
                 name={`vehicle-${index}`}
                 handleSelection={handleSelectedVehicle}
             />
@@ -55,7 +55,7 @@ JourneyCard.propTypes = {
     index: PropTypes.number
 };
 
-const CardContainer = styled.div`
+const CardContainer = styled.form`
     height: 200px;
     width: 150px;
     min-width: 150px;

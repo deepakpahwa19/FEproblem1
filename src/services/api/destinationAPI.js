@@ -7,7 +7,7 @@ export const getDestinationsAPI = () => {
     return axiosFalcone
         .get(END_POINTS.getPlanets())
         .then(response => {
-            return { status: STATUS.SUCCESS, data: response };
+            return { status: STATUS.SUCCESS, destinations: response.data, statusCode: response.status };
         })
         .catch(error => {
             if (error.response) {

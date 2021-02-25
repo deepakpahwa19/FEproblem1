@@ -6,7 +6,7 @@ export const getVehiclesAPI = () => {
     return axiosFalcone
         .get(END_POINTS.getVehicles())
         .then(response => {
-            return { status: STATUS.SUCCESS, data: response };
+            return { status: STATUS.SUCCESS, vehicles: response.data, statusCode: response.status };
         })
         .catch(error => {
             if (error.response) {

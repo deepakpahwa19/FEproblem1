@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import styled from 'styled-components';
 
-export const RadioButtonList = React.memo(({ values, name, handleSelection }) => {
+export const VehicleList = React.memo(({ listOfVehicles, name, handleSelection, planetDistance }) => {
     const [selectedVehicle, setSelectedVehicle] = useState('');
+    // const vehicles = listOfVehicles.map(vehicle => vehicle.name) || [];
 
     const handleChange = useCallback(
         event => {
@@ -15,17 +16,18 @@ export const RadioButtonList = React.memo(({ values, name, handleSelection }) =>
 
     return (
         <>
-            {values.map((value, index) => (
-                <DivStyle key={`${value}-${index}`}>
+            {listOfVehicles.map((vehicle, index) => (
+                <DivStyle key={`${vehicle.name}-${index}`}>
                     <input
                         type='radio'
                         name={name}
-                        value={value}
-                        id={`${name}-${value}`}
-                        checked={value === selectedVehicle}
+                        value={vehicle.name}
+                        id={`${name}-${vehicle.name}`}
+                        checked={vehicle.name === selectedVehicle}
                         onChange={handleChange}
+                        disabled={vehicle.max_distance < planetDistance}
                     />
-                    <Label htmlFor={`${name}-${value}`}>{value}</Label>
+                    <Label htmlFor={`${name}-${vehicle.name}`}>{`${vehicle.name} (${vehicle.total_no})`}</Label>
                 </DivStyle>
             ))}
         </>

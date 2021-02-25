@@ -2,16 +2,15 @@ import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Dropdown from '../UI/Dropdown';
-import { RadioButtonList } from '../UI/RadioButtonList';
+import { VehicleList } from '../Vehicle/VehicleList';
 import { useDispatch } from 'react-redux';
 import { getJourneyDestinationAction, getJourneyVehicleAction } from '../../redux/actions/actions/journeyActions';
 
 export const JourneyCard = React.memo(({ index, listOfDestination, listOfVehicles }) => {
     const destinations = useMemo(() => listOfDestination.map(destination => destination.name), [listOfDestination]);
-    const vehicles = useMemo(() => listOfVehicles.map(vehicle => vehicle.name), [listOfVehicles]);
     const dispatch = useDispatch();
     const [selectedDestination, setSelectedDestination] = useState('');
-    const [selectedVehicle, setSelectedVehicle] = useState('');
+    const [, setSelectedVehicle] = useState('');
 
     const handleSelectedDestination = useCallback(
         value => {
@@ -39,9 +38,10 @@ export const JourneyCard = React.memo(({ index, listOfDestination, listOfVehicle
                 options={destinations}
                 handleSelection={handleSelectedDestination}
             />
-            <RadioButtonList
+            <VehicleList
                 key={`${(selectedDestination || {}).name}-${index}`}
-                values={vehicles}
+                listOfVehicles={listOfVehicles}
+                planetDistance={selectedDestination.distance}
                 name={`vehicle-${index}`}
                 handleSelection={handleSelectedVehicle}
             />

@@ -85,7 +85,7 @@ export const FindFalconeFeature = React.memo(() => {
 
     return (
         <FlexContainer>
-            <FindFalconeContext.Provider value={{ listOfDestination, updateDestinations }}>
+            <FindFalconeContext.Provider value={{ listOfDestination, updateDestinations, destinations }}>
                 {numberOfCards.map((card, index) => (
                     <JourneyCard key={`journey-${index}`} index={index} listOfVehicles={listOfVehicle} />
                 ))}

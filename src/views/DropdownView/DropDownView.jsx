@@ -6,7 +6,7 @@ export const DropDownView = React.memo(({ name, value = 'Select', options = [], 
         <select name={name} value={value} onChange={onChangeHandler}>
             <option value='Select'>Select</option>
             {options
-                .filter(option => option !== undefined)
+                .filter(option => option !== undefined && option !== null)
                 .map((optionValue, index) => (
                     <option value={optionValue} key={`${name}-${index}`}>
                         {optionValue}

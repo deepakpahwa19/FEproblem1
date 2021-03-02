@@ -6,26 +6,32 @@ import { FindFalconeContext } from '../FindFalconeFeature';
 export const DestinationDD = React.memo(({ name }) => {
     const [remainingDestination, setRemainingDestination] = useState([]);
     const [selectedValue, setSelectedValue] = useState('');
-    const [selectedIndex, setSelectedIndex] = useState('');
 
-    const { listOfDestination, updateDestinations } = useContext(FindFalconeContext);
+    const { listOfDestination, updateDestinations, destinations } = useContext(FindFalconeContext);
 
     useEffect(() => {
-        console.log('listOfDestination =>', listOfDestination);
+        // console.log('listOfDestination =>', listOfDestination);
+        // Getting the list of name of remaining destination
         const destinationList = listOfDestination.map(destination => destination && destination.name);
-        if (selectedValue) {
-            destinationList[selectedIndex] = selectedValue;
+
+        // Getting the name of selected dropdown value
+        for (let index in destinations) {
+            if (destinations[index].name === selectedValue) {
+                destinationList[index] = destinations[index].name;
+                break;
+            }
         }
-        console.log('remainingDestination =>', destinationList);
+        // console.log('remainingDestination =>', destinationList);
+
         setRemainingDestination(destinationList);
-    }, [listOfDestination, selectedIndex, selectedValue]);
+    }, [listOfDestination, selectedValue, destinations]);
 
     const handleDropdownChange = useCallback(
-        (value, index) => {
+        value => {
             const prevValue = selectedValue;
+            // Updating parent component to not allow other dropdowns to use this value.
             updateDestinations(prevValue, value);
             setSelectedValue(value);
-            setSelectedIndex(index);
         },
         [updateDestinations, selectedValue]
     );

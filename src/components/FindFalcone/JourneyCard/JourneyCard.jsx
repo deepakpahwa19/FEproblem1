@@ -29,11 +29,7 @@ export const JourneyCard = React.memo(({ index, listOfVehicles }) => {
     return (
         <JourneyCardView>
             <h4>Destination {index + 1}</h4>
-            <DestinationDD
-                name={`destination-${index}`}
-                // listOfDestination={listOfDestination}
-                // handleSelection={handleSelectedDestination}
-            />
+            <DestinationDD name={`destination-${index}`} />
             {/* <VehicleList
             // name={name}
             // key={`${name}-${index}`}

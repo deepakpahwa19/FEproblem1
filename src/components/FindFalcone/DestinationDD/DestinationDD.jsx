@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { DropDown } from '../../DropDown/DropDown';
-import { FindFalconeContext } from '../FindFalconeFeature';
+import { FindFalconeContext } from '../FindFalcone';
 
 export const DestinationDD = React.memo(({ name }) => {
     const [remainingDestination, setRemainingDestination] = useState([]);

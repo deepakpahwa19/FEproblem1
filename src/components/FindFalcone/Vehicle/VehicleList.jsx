@@ -1,20 +1,33 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useStateAndIndex } from '../../../logic/useStateAndIndex';
+// import { useStateAndIndex } from '../../../logic/useStateAndIndex';
 import { RadioButtonView } from '../../../views';
+import { FindFalconeContext } from '../FindFalcone';
 
-export const VehicleList = React.memo(({ name, planetDistance, listOfVehicles }) => {
-    const [selectedVehicle, setSelectedVehicle] = useStateAndIndex('');
+export const VehicleList = React.memo(({ name, planetDistance }) => {
+    const [selectedVehicle, setSelectedVehicle] = useState({});
+
+    const { listOfVehicle = [] } = useContext(FindFalconeContext);
+
+    const handleVehicleSelect = useCallback(
+        event => {
+            const vehicleName = event.target.value;
+            const [vehicle] = listOfVehicle.filter(vehicle => vehicle.name === vehicleName);
+            setSelectedVehicle(vehicle);
+        },
+        [listOfVehicle]
+    );
+
     return (
         <>
-            {listOfVehicles.map((vehicle, index) => (
+            {listOfVehicle.map((vehicle, index) => (
                 <RadioButtonView
                     name={name}
                     value={vehicle.name}
                     key={`${name}-${vehicle.name}`}
-                    isChecked={vehicle.name === selectedVehicle}
+                    isChecked={vehicle.name === selectedVehicle.name}
                     isDisabled={vehicle.max_distance < planetDistance}
-                    onChangeHandler={setSelectedVehicle(vehicle, index)}
+                    onChangeHandler={handleVehicleSelect}
                     label={`${vehicle.name} (${vehicle.total_no})`}
                 />
             ))}

@@ -23,7 +23,7 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
 
         if (vehicles.length > 0 && listOfVehicle.length === 0) {
             const list = vehicles.map(vehicle => vehicle && { ...vehicle });
-            const selectedList = new Array(vehicles.length).fill(null);
+            const selectedList = new Array(vehicles.length);
             setListOfVehicle(list);
             setSelectedVehicles(selectedList);
         }
@@ -68,11 +68,33 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
         [listOfDestination, selectedDestinations]
     );
 
+    const updateVehicles = useCallback(
+        (prevValue, nextValue) => {
+            let newVehicleList = new Array(listOfVehicle.length),
+                newSelectedVehicleList = new Array(listOfVehicle.length);
+            for (let index in listOfVehicle) {
+                newVehicleList[index] = { ...listOfVehicle[index] };
+                if (listOfVehicle[index].name === nextValue) {
+                    newVehicleList[index].total_no--;
+                    newSelectedVehicleList[index] = { ...listOfVehicle[index] };
+                } else if (listOfVehicle[index].name === prevValue) {
+                    newVehicleList[index].total_no++;
+                    newSelectedVehicleList[index].total_no--;
+                }
+            }
+            setListOfVehicle(newVehicleList);
+            setSelectedVehicles(newSelectedVehicleList);
+        },
+        [listOfVehicle]
+    );
+
     return (
         <FlexContainer>
-            <FindFalconeContext.Provider value={{ listOfDestination, updateDestinations, destinations }}>
+            <FindFalconeContext.Provider
+                value={{ listOfDestination, updateDestinations, destinations, listOfVehicle, updateVehicles }}
+            >
                 {numberOfCards.map((card, index) => (
-                    <JourneyCard key={`journey-${index}`} index={index} listOfVehicles={listOfVehicle} />
+                    <JourneyCard key={`journey-${index}`} index={index} />
                 ))}
             </FindFalconeContext.Provider>
         </FlexContainer>

@@ -1,43 +1,28 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { DestinationDD } from '../DestinationDD/DestinationDD';
-// import { VehicleList } from '../Vehicle/VehicleList';
-// import { getJourneyDestinationAction, getJourneyVehicleAction } from '../../redux/actions/actions/journeyActions';
+import { VehicleList } from '../Vehicle/VehicleList';
 import { JourneyCardView } from '../../../views';
 
-export const JourneyCard = React.memo(({ index, listOfVehicles }) => {
-    // const destinations = useMemo(() => listOfDestination.map(destination => destination.name), [listOfDestination]);
+export const JourneyCard = React.memo(({ index }) => {
+    const [planetDistance, setPlanetDistance] = useState(0);
 
-    // const handleSelectedDestination = useCallback(
-    //     value => {
-    //         const [selectedDestination] = listOfDestination.filter(destination => destination.name === value);
-    //         setSelectedDestination(selectedDestination);
-    //         dispatch(getJourneyDestinationAction(selectedDestination, index));
-    //     },
-    //     [listOfDestination, dispatch, index]
-    // );
-
-    // const handleSelectedVehicle = useCallback(
-    //     value => {
-    //         const [selectedVehicle] = listOfVehicles.filter(vehicle => vehicle.name === value);
-    //         setSelectedVehicle(selectedVehicle);
-    //         dispatch(getJourneyVehicleAction(selectedVehicle, index));
-    //     },
-    //     [listOfVehicles, dispatch, index]
-    // );
+    const updatePlanetDistance = useCallback(distance => {
+        setPlanetDistance(distance);
+    }, []);
 
     return (
         <JourneyCardView>
             <h4>Destination {index + 1}</h4>
-            <DestinationDD name={`destination-${index}`} />
-            {/* <VehicleList
-            // name={name}
-            // key={`${name}-${index}`}
-            // listOfVehicles={listOfVehicles}
-            // planetDistance={(selectedDestination || {}).distance || 0}
-            // name={`vehicle-${index}`}
-            // handleSelection={handleSelectedVehicle}
-            /> */}
+            <DestinationDD name={`destination-${index}`} updatePlanetDistance={updatePlanetDistance} />
+            {planetDistance > 0 && (
+                <VehicleList
+                    key={`vehicle-${index}`}
+                    planetDistance={planetDistance}
+                    name={`vehicle-${index}`}
+                    // handleSelection={handleSelectedVehicle}
+                />
+            )}
         </JourneyCardView>
     );
 });

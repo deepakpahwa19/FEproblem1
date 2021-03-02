@@ -1,11 +1,8 @@
-import { useDispatch } from 'react-redux';
 import './App.css';
-import { FindFalconeFeature } from './containers/FindFalconeFeature';
+import { FindFalconeFeature } from './components/FindFalcone/FindFalconeFeature';
 import GlobalStyle from './styles/globalStyles';
 
 function App() {
-    const dispatch = useDispatch();
-
     return (
         <>
             <GlobalStyle />

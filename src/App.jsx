@@ -1,5 +1,5 @@
 import './App.css';
-import { FindFalconeFeature } from './components/FindFalcone/FindFalconeFeature';
+import { FindFalconeFeature } from './feature/FindFalconeFeature';
 import GlobalStyle from './styles/globalStyles';
 
 function App() {

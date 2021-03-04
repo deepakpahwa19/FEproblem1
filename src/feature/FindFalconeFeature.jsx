@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector, batch } from 'react-redux';
-import { getDestinationsAction } from '../../redux/actions/actions/destinationActions';
-import { getVehiclesAction } from '../../redux/actions/actions/vehicleActions';
-import { FindFalcone } from './FindFalcone';
+import { getDestinationsAction } from '../redux/actions/actions/destinationActions';
+import { getVehiclesAction } from '../redux/actions/actions/vehicleActions';
+import { FindFalcone } from '../components/FindFalcone/FindFalcone';
 
 export const FindFalconeFeature = React.memo(() => {
     const { destinations, isDestinationLoading } = useSelector(state => state.destinations);

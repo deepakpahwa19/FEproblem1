@@ -79,7 +79,7 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
                     newSelectedVehicleList[index] = { ...listOfVehicle[index] };
                 } else if (listOfVehicle[index].name === prevValue) {
                     newVehicleList[index].total_no++;
-                    newSelectedVehicleList[index].total_no--;
+                    // newSelectedVehicleList[index].total_no--;
                 }
             }
             setListOfVehicle(newVehicleList);

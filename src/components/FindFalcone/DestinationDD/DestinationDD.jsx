@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { DropDown } from '../../DropDown/DropDown';
 import { FindFalconeContext } from '../FindFalcone';
 
-export const DestinationDD = React.memo(({ name, updatePlanetDistance }) => {
+export const DestinationDD = React.memo(({ name, updatePlanetDistance, journeyIndex }) => {
     const [remainingDestination, setRemainingDestination] = useState([]);
     const [selectedValue, setSelectedValue] = useState('');
 
@@ -29,14 +29,14 @@ export const DestinationDD = React.memo(({ name, updatePlanetDistance }) => {
     const handleDropdownChange = useCallback(
         value => {
             const prevValue = selectedValue;
-            // Updating parent component to not allow other dropdowns to use this value.
-            updateDestinations(prevValue, value);
             const [selectedPlanet] = destinations.filter(destination => (destination || {}).name === value);
+            // Updating parent component to not allow other dropdowns to use this value.
+            updateDestinations(prevValue, value, journeyIndex);
             // updating planet distance to 0 if 'Select' is selected in dropdown
             updatePlanetDistance((selectedPlanet || {}).distance || 0);
             setSelectedValue(value);
         },
-        [updateDestinations, selectedValue, updatePlanetDistance, destinations]
+        [updateDestinations, selectedValue, updatePlanetDistance, destinations, journeyIndex]
     );
 
     return (

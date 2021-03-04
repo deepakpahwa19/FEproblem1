@@ -14,9 +14,18 @@ export const JourneyCard = React.memo(({ index }) => {
     return (
         <JourneyCardView>
             <h4>Destination {index + 1}</h4>
-            <DestinationDD name={`destination-${index}`} updatePlanetDistance={updatePlanetDistance} />
+            <DestinationDD
+                name={`destination-${index}`}
+                updatePlanetDistance={updatePlanetDistance}
+                journeyIndex={index}
+            />
             {planetDistance > 0 && (
-                <VehicleList key={`vehicle-${index}`} planetDistance={planetDistance} name={`vehicle-${index}`} />
+                <VehicleList
+                    key={`vehicle-${index}`}
+                    planetDistance={planetDistance}
+                    name={`vehicle-${index}`}
+                    journeyIndex={index}
+                />
             )}
         </JourneyCardView>
     );

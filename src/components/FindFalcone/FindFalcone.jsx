@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FlexContainer } from '../../views';
 import { JourneyCard } from './JourneyCard/JourneyCard';
@@ -11,8 +11,8 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
     const [listOfDestination, setListOfDestination] = useState([]);
     const [listOfVehicle, setListOfVehicle] = useState([]);
     const [selectedDestinations, setSelectedDestinations] = useState([]);
-    const [selectedVehicles, setSelectedVehicles] = useState([]);
-    const [totalTime, setTotalTime] = useState(0);
+    const [, setSelectedVehicles] = useState([]);
+    const [journeyDetail, setJourneyDetail] = useState(() => new Array(numberOfCards.length).fill({}));
 
     useEffect(() => {
         // Creating local listOfDestination array from destinations from redux
@@ -32,6 +32,16 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
         }
     }, [listOfDestination, destinations, listOfVehicle, vehicles]);
 
+    const getTotalTime = useMemo(() => {
+        let sum = 0;
+        journeyDetail.forEach(journey => {
+            if (journey.distance && journey.speed) {
+                sum += journey.distance / journey.speed;
+            }
+        });
+        return sum;
+    }, [journeyDetail]);
+
     /**
      * @description: To keep track of the selected destination in each destination dropdown displaying in each card
      * @summary: There will be two array of same length to keep track of selected destinations and remaining destinations
@@ -40,16 +50,19 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
      * @param: prevValue = previous selected destination
      */
     const updateDestinations = useCallback(
-        (prevValue, newValue) => {
+        (prevValue, newValue, journeyIndex) => {
             // creating new array to prevent mutating the state
             let newDestinationList = new Array(listOfDestination.length),
-                newSelectedDestinationList = new Array(listOfDestination.length);
+                newSelectedDestinationList = new Array(listOfDestination.length),
+                newJourneyDetail = journeyDetail.map(journey => ({ ...journey }));
 
             for (let index in listOfDestination) {
                 // if destination.name at index matches the newValue then saving the destination in selectedDestinations state
                 if (listOfDestination[index] && listOfDestination[index].name === newValue) {
                     newDestinationList[index] = null;
                     newSelectedDestinationList[index] = listOfDestination[index];
+                    newJourneyDetail[journeyIndex].distance = listOfDestination[index].distance;
+                    newJourneyDetail[journeyIndex].speed = 0;
                 } else {
                     newDestinationList[index] = listOfDestination[index] && { ...listOfDestination[index] };
                 }
@@ -67,29 +80,33 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
                 }
             }
 
+            setJourneyDetail(newJourneyDetail);
             setListOfDestination(newDestinationList);
             setSelectedDestinations(newSelectedDestinationList);
         },
-        [listOfDestination, selectedDestinations]
+        [listOfDestination, selectedDestinations, journeyDetail]
     );
 
     const updateVehicles = useCallback(
-        (prevValue, nextValue) => {
+        (prevValue, nextValue, journeyIndex) => {
             let newVehicleList = new Array(listOfVehicle.length),
-                newSelectedVehicleList = new Array(listOfVehicle.length);
+                newSelectedVehicleList = new Array(listOfVehicle.length),
+                newJourneyDetail = journeyDetail.map(journey => ({ ...journey }));
             for (let index in listOfVehicle) {
                 newVehicleList[index] = { ...listOfVehicle[index] };
                 if (listOfVehicle[index].name === nextValue) {
                     newVehicleList[index].total_no--;
                     newSelectedVehicleList[index] = { ...listOfVehicle[index] };
+                    newJourneyDetail[journeyIndex].speed = listOfVehicle[index].speed;
                 } else if (listOfVehicle[index].name === prevValue) {
                     newVehicleList[index].total_no++;
                 }
             }
+            setJourneyDetail(newJourneyDetail);
             setListOfVehicle(newVehicleList);
             setSelectedVehicles(newSelectedVehicleList);
         },
-        [listOfVehicle]
+        [listOfVehicle, journeyDetail]
     );
 
     return (
@@ -103,7 +120,7 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
                     ))}
                 </FindFalconeContext.Provider>
             </FlexContainer>
-            <h4>Total Time: {totalTime}</h4>
+            <h4>Total Time: {getTotalTime}</h4>
         </>
     );
 });

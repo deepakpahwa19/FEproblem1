@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { RadioButtonView } from '../../../views';
 import { FindFalconeContext } from '../FindFalcone';
 
-export const VehicleList = React.memo(({ name, planetDistance }) => {
+export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) => {
     const [selectedVehicle, setSelectedVehicle] = useState({});
     const [remainingVehicles, setRemainingVehicles] = useState([]);
     const isSelected = useRef(false);
@@ -25,9 +25,9 @@ export const VehicleList = React.memo(({ name, planetDistance }) => {
             }
             isSelected.current = true;
             setSelectedVehicle(newSelectedVehicle);
-            updateVehicles(prevVehicleName, vehicleName);
+            updateVehicles(prevVehicleName, vehicleName, journeyIndex);
         },
-        [listOfVehicle, updateVehicles, selectedVehicle]
+        [listOfVehicle, updateVehicles, selectedVehicle, journeyIndex]
     );
 
     useEffect(() => {

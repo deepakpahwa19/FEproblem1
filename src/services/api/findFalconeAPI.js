@@ -1,13 +1,12 @@
-import { STATUS } from '../../constants/commonConstants';
 import axiosFalcone from '../axios/axiosFalcone';
 import { END_POINTS, errorObject } from './apiUtil';
 import { API_ERRORS } from '../../constants/commonConstants';
 
-export const getDestinationsAPI = () => {
+export const findFalconeAPI = () => {
     return axiosFalcone
-        .get(END_POINTS.planets)
+        .get(END_POINTS.find)
         .then(response => {
-            return { status: STATUS.SUCCESS, destinations: response.data, statusCode: response.status };
+            return { status: response.status, planetName: response.planet_name, statusCode: response.status };
         })
         .catch(error => {
             if (error.response) {

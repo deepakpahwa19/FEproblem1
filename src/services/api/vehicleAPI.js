@@ -4,7 +4,7 @@ import { STATUS, API_ERRORS } from '../../constants/commonConstants';
 
 export const getVehiclesAPI = () => {
     return axiosFalcone
-        .get(END_POINTS.getVehicles())
+        .get(END_POINTS.vehicle)
         .then(response => {
             return { status: STATUS.SUCCESS, vehicles: response.data, statusCode: response.status };
         })

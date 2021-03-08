@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import destinationReducer from './destinationReducer';
-import journeyReducer from './journeyReducer';
+import findFalconeReducer from './findFalconeReducer';
+import tokenReducer from './tokenReducer';
 import vehicleReducer from './vehicleReducer';
 
 const rootReducer = combineReducers({
     vehicles: vehicleReducer,
     destinations: destinationReducer,
-    journey: journeyReducer
+    token: tokenReducer,
+    findFalcone: findFalconeReducer
 });
 
 export default rootReducer;

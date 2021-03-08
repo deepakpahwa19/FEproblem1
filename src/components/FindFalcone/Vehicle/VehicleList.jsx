@@ -1,6 +1,5 @@
 import React, { useCallback, useContext, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-// import { useStateAndIndex } from '../../../logic/useStateAndIndex';
 import { RadioButtonView } from '../../../views';
 import { FindFalconeContext } from '../FindFalcone';
 

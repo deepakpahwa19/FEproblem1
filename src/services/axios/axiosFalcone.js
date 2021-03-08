@@ -9,7 +9,6 @@ const getBaseUrl = () => {
 };
 
 const axiosFalcone = axios.create({
-    // baseURL: envConfig['development'].baseURL,
     baseURL: getBaseUrl(),
     headers: {
         Accept: 'application/json',

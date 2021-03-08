@@ -109,6 +109,8 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
         [listOfVehicle, journeyDetail]
     );
 
+    const handleFindFalcone = useCallback(() => {}, []);
+
     return (
         <>
             <FlexContainer>
@@ -121,6 +123,7 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
                 </FindFalconeContext.Provider>
             </FlexContainer>
             <h4>Total Time: {getTotalTime}</h4>
+            <button onClick={handleFindFalcone}>Find Falcone</button>
         </>
     );
 });

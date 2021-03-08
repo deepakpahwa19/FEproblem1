@@ -7,6 +7,8 @@ export const STATUS = {
 
 export const VEHICLES = 'vehicles';
 export const PLANETS = 'planets';
+export const TOKEN = 'token';
+export const FIND = 'find';
 
 export const API_ERRORS = {
     NO_REQUEST_ATTACHED: 'no-request-attached',

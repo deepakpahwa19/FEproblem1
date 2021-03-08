@@ -1,15 +1,39 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: 'Source Sans Pro', sans-serif;
-    }
+// const GlobalStyle = createGlobalStyle`
+//     * {
+//         box-sizing: border-box;
+//         margin: 0;
+//         padding: 0;
+//         font-family: 'Source Sans Pro', sans-serif;
+//     }
 
+// `;
+
+const GlobalStyles = createGlobalStyle`
+
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');;
+
+  *,
+  *::after,
+  *::before {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: inherit;
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    box-sizing: border-box;
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+  }
 `;
-export default GlobalStyle;
+
+export default GlobalStyles;
 
 export const Container = styled.div`
     z-index: 1;

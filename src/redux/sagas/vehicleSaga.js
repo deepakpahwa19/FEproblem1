@@ -1,6 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import { STATUS } from '../../constants/commonConstants';
-import { getVehiclesAPI } from '../../services/api/vehicleAPI';
+import { getVehiclesAPI } from '../../services/api';
 import { getVehiclesFailedAction, getVehiclesSuccessAction } from '../actions/actions/vehicleActions';
 import { VEHICLES_ACTION_TYPES } from '../actions/actionTypes';
 

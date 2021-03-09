@@ -3,11 +3,11 @@ import React from 'react';
 import styled from 'styled-components';
 // import { Button } from '../../styles/globalStyles';
 
-export const ButtonView = React.memo(({ children, onClick }) => {
-    return <Button onClick={onClick}>{children}</Button>;
+export const Button = React.memo(({ children, onClick }) => {
+    return <ButtonUI onClick={onClick}>{children}</ButtonUI>;
 });
 
-export const Button = styled.button`
+export const ButtonUI = styled.button`
     border-radius: 4px;
     background: ${({ primary }) => (primary ? '#4B59F7' : '#0467FB')};
     white-space: nowrap;

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const H4View = React.memo(({ children }) => {
-    return <H4>{children}</H4>;
+export const H4 = React.memo(({ children }) => {
+    return <H4UI>{children}</H4UI>;
 });
 
-const H4 = styled.h4`
+const H4UI = styled.h4`
     text-align: center;
     margin: 10px auto;
 `;

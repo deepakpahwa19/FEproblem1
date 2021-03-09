@@ -1,10 +1,16 @@
 import React, { useCallback, useContext, useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import { RadioButtonView } from '../../../views';
 import { FindFalconeContext } from '../FindFalcone';
+import { getJourneyNameWithIndex } from '../../../constants/commonConstants';
+import { getJourneyVehicleAction } from '../../../redux/actions/actions/journeyActions';
 
 export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) => {
-    const [selectedVehicle, setSelectedVehicle] = useState({});
+    const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]);
+    const dispatch = useDispatch();
+
     const [remainingVehicles, setRemainingVehicles] = useState([]);
     const isSelected = useRef(false);
 
@@ -13,54 +19,55 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
     const handleVehicleSelect = useCallback(
         event => {
             const vehicleName = event.target.value;
-            const prevVehicleName = selectedVehicle.name;
-            let newSelectedVehicle,
-                newVehicleList = [];
-            for (let vehicle of listOfVehicle) {
-                if (vehicle.name === vehicleName) {
-                    newSelectedVehicle = { ...vehicle };
-                    newVehicleList.push({ ...vehicle, total_no: vehicle.total_no - 1 });
-                } else newVehicleList.push({ ...vehicle });
+            const prevVehicleName = (vehicle || {}).name;
+            for (let currentVehicle of listOfVehicle) {
+                if (currentVehicle.name === vehicleName) {
+                    dispatch(getJourneyVehicleAction(currentVehicle, journeyIndex));
+                    break;
+                }
             }
             isSelected.current = true;
-            setSelectedVehicle(newSelectedVehicle);
             updateVehicles(prevVehicleName, vehicleName, journeyIndex);
         },
-        [listOfVehicle, updateVehicles, selectedVehicle, journeyIndex]
+        [listOfVehicle, updateVehicles, dispatch, vehicle, journeyIndex]
     );
 
     useEffect(() => {
         const list = [];
         let newSelectedVehicle = {};
-        for (let vehicle of listOfVehicle) {
-            if (vehicle.name === selectedVehicle.name) {
-                if (vehicle.total_no < selectedVehicle.total_no) list.push({ ...selectedVehicle });
-                else if (vehicle.total_no === selectedVehicle.total_no) {
-                    newSelectedVehicle = { ...selectedVehicle, total_no: selectedVehicle.total_no + 1 };
+        for (let currentVehicle of listOfVehicle) {
+            if (vehicle && vehicle.name === currentVehicle.name) {
+                if (currentVehicle.total_no < vehicle.total_no) list.push({ ...vehicle });
+                else if (currentVehicle.total_no === vehicle.total_no) {
+                    newSelectedVehicle = { ...vehicle, total_no: vehicle.total_no + 1 };
                     list.push(newSelectedVehicle);
                 }
             } else {
-                list.push({ ...vehicle });
+                list.push({ ...currentVehicle });
             }
         }
         if (isSelected.current && newSelectedVehicle.name) {
             isSelected.current = false;
-            setSelectedVehicle(newSelectedVehicle);
+            dispatch(getJourneyVehicleAction(newSelectedVehicle, journeyIndex));
         }
         setRemainingVehicles(list);
-    }, [listOfVehicle, selectedVehicle]);
+    }, [listOfVehicle, vehicle, dispatch, journeyIndex]);
+
+    if (!planet) {
+        return <></>;
+    }
 
     return (
         <>
-            {remainingVehicles.map((vehicle, index) => (
+            {remainingVehicles.map((currentVehicle, index) => (
                 <RadioButtonView
                     name={name}
-                    value={vehicle.name}
-                    key={`${name}-${vehicle.name}`}
-                    isChecked={vehicle.name === selectedVehicle.name}
-                    isDisabled={vehicle.max_distance < planetDistance || vehicle.total_no <= 0}
+                    value={currentVehicle.name}
+                    key={`${name}-${currentVehicle.name}`}
+                    isChecked={vehicle && vehicle.name === currentVehicle.name}
+                    isDisabled={currentVehicle.max_distance < planet.distance || currentVehicle.total_no <= 0}
                     onChangeHandler={handleVehicleSelect}
-                    label={`${vehicle.name} (${vehicle.total_no})`}
+                    label={`${currentVehicle.name} (${currentVehicle.total_no})`}
                 />
             ))}
         </>

@@ -1,29 +1,35 @@
+import { getJourneyNameWithIndex } from '../../constants/commonConstants';
 import { JOURNEY_ACTION_TYPES } from '../actions/actionTypes';
 
 const initialState = {
-    listOfSelectedDestination: new Array(4).fill(null),
-    listOfSelectedVehicle: new Array(4).fill(null)
+    journey_0: {},
+    journey_1: {},
+    journey_2: {},
+    journey_3: {}
 };
 const journeyReducer = (state = initialState, action) => {
+    let payload = {},
+        journeyName = '';
     switch (action.type) {
         case JOURNEY_ACTION_TYPES.UPDATE_DESTINATION:
+            payload = action.payload;
+            journeyName = getJourneyNameWithIndex(action.journeyIndex);
             return {
                 ...state,
-                listOfSelectedDestination: getUpdatedList(
-                    [...state.listOfSelectedDestination],
-                    action.journeyIndex,
-                    (action.payload || {}).name || null
-                ),
-                listOfSelectedVehicle: getUpdatedList([...state.listOfSelectedVehicle], action.journeyIndex, null)
+                [journeyName]: {
+                    ...payload,
+                    vehicle: null
+                }
             };
         case JOURNEY_ACTION_TYPES.UPDATE_VEHICLE:
+            payload = action.payload;
+            journeyName = getJourneyNameWithIndex(action.journeyIndex);
             return {
                 ...state,
-                listOfSelectedVehicle: getUpdatedList(
-                    [...state.listOfSelectedVehicle],
-                    action.journeyIndex,
-                    (action.payload || {}).name || null
-                )
+                [journeyName]: {
+                    ...state[journeyName],
+                    ...payload
+                }
             };
         default:
             break;

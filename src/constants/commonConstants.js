@@ -15,3 +15,5 @@ export const API_ERRORS = {
     NO_RESPONSE_RECEIVED: 'no-response-received',
     NO_ERROR_CODE: 'NO-ERROR-CODE'
 };
+
+export const getJourneyNameWithIndex = index => `journey_${index}`;

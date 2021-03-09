@@ -6,14 +6,15 @@ export const JourneyCardView = React.memo(({ children }) => {
 });
 
 const CardContainer = styled.form`
-    height: 200px;
-    width: 150px;
-    min-width: 150px;
+    flex-grow: 1;
+    height: 250px;
+    width: min(40vmax, 250px);
+    /* min-width: 200px; */
+    max-width: 300px;
     padding: 10px;
-    margin: auto;
+    margin: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
+    justify-content: flex-start;
     box-shadow: 0px 0px 11px 0px #888888;
 `;

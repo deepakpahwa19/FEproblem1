@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 export const RadioButtonView = React.memo(({ name, value, isChecked, isDisabled, onChangeHandler, label }) => {
     return (
-        <label>
-            <input
+        <Label>
+            <Input
                 type='radio'
                 name={name}
                 value={value}
@@ -13,7 +14,7 @@ export const RadioButtonView = React.memo(({ name, value, isChecked, isDisabled,
                 disabled={isDisabled}
             />
             {label}
-        </label>
+        </Label>
     );
 });
 
@@ -25,3 +26,10 @@ RadioButtonView.propTypes = {
     onChangeHandler: PropTypes.func,
     label: PropTypes.string
 };
+
+const Label = styled.label`
+    padding: 2px;
+`;
+const Input = styled.input`
+    margin-right: 10px;
+`;

@@ -1,7 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FlexContainer } from '../../views';
+import { FlexContainer, H4View } from '../../views';
 import { JourneyCard } from './JourneyCard/JourneyCard';
+import { ButtonView } from '../../views/CommonUI/ButtonView';
+import { useDispatch } from 'react-redux';
+import { getFindFalconeAction } from '../../redux/actions/actions/findFalconeActions';
 
 export const FindFalconeContext = React.createContext();
 
@@ -11,7 +14,8 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
     const [listOfDestination, setListOfDestination] = useState([]);
     const [listOfVehicle, setListOfVehicle] = useState([]);
     const [selectedDestinations, setSelectedDestinations] = useState([]);
-    const [, setSelectedVehicles] = useState([]);
+    const [selectedVehicles, setSelectedVehicles] = useState([]);
+    const dispatch = useDispatch();
     const [journeyDetail, setJourneyDetail] = useState(() => new Array(numberOfCards.length).fill({}));
 
     useEffect(() => {
@@ -109,24 +113,42 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
         [listOfVehicle, journeyDetail]
     );
 
-    const handleFindFalcone = useCallback(() => {}, []);
+    const handleFindFalcone = useCallback(() => {
+        console.log('InsideFind Falcone button');
+        console.log(selectedDestinations, selectedVehicles);
+        const listOfSelectedDestination = selectedDestinations
+            .filter(destination => !destination)
+            .map(destination => destination.name);
+        const listOfSelectedVehicle = selectedVehicles.filter(vehicle => !vehicle).map(vehicle => vehicle.name);
+        console.log(listOfSelectedVehicle, listOfSelectedVehicle);
+        dispatch(getFindFalconeAction(listOfSelectedDestination, listOfSelectedVehicle));
+    }, [selectedDestinations, selectedVehicles, dispatch]);
 
     return (
         <>
-            <FlexContainer>
-                <FindFalconeContext.Provider
-                    value={{ listOfDestination, updateDestinations, destinations, listOfVehicle, updateVehicles }}
-                >
-                    {numberOfCards.map((card, index) => (
-                        <JourneyCard key={`journey-${index}`} index={index} />
-                    ))}
-                </FindFalconeContext.Provider>
+            <FlexContainer direction='column'>
+                <FlexContainer>
+                    <FindFalconeContext.Provider
+                        value={{
+                            listOfDestination,
+                            updateDestinations,
+                            destinations,
+                            listOfVehicle,
+                            updateVehicles
+                        }}
+                    >
+                        {numberOfCards.map((card, index) => (
+                            <JourneyCard key={`journey-${index}`} index={index} />
+                        ))}
+                    </FindFalconeContext.Provider>
+                </FlexContainer>
+                <H4View>Total Time: {getTotalTime}</H4View>
+                <ButtonView onClick={handleFindFalcone}>Find Falcone</ButtonView>
             </FlexContainer>
-            <h4>Total Time: {getTotalTime}</h4>
-            <button onClick={handleFindFalcone}>Find Falcone</button>
         </>
     );
 });
+
 FindFalcone.propTypes = {
     destinations: PropTypes.array.isRequired,
     vehicles: PropTypes.array.isRequired

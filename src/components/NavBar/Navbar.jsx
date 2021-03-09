@@ -42,7 +42,7 @@ export const Navbar = () => {
                 <NavbarContainer>
                     <NavLogo to='/'>
                         <NavIcon />
-                        ULTRA
+                        GeekTrust
                     </NavLogo>
                     <MobileIcon onClick={handleClick}>{click ? <FaTimes /> : <FaBars />}</MobileIcon>
                     <NavMenu onClick={handleClick} click={click}>
@@ -55,7 +55,7 @@ export const Navbar = () => {
                         <NavItem>
                             <NavLinks to='/products'>Products</NavLinks>
                         </NavItem>
-                        <NavItemBtn>
+                        {/* <NavItemBtn>
                             {button ? (
                                 <NavBtnLink to='/sign-up'>
                                     <Button primary>SIGN UP</Button>
@@ -67,7 +67,7 @@ export const Navbar = () => {
                                     </Button>
                                 </NavBtnLink>
                             )}
-                        </NavItemBtn>
+                        </NavItemBtn> */}
                     </NavMenu>
                 </NavbarContainer>
             </Nav>

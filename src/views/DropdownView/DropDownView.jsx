@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 export const DropDownView = React.memo(({ name, value = 'Select', options = [], onChangeHandler }) => {
     return (
-        <select name={name} value={value} onChange={onChangeHandler}>
+        <Select name={name} value={value} onChange={onChangeHandler}>
             <option value='Select'>Select</option>
             {options
                 .filter(option => option !== undefined && option !== null)
@@ -12,7 +13,7 @@ export const DropDownView = React.memo(({ name, value = 'Select', options = [], 
                         {optionValue}
                     </option>
                 ))}
-        </select>
+        </Select>
     );
 });
 
@@ -22,3 +23,8 @@ DropDownView.propTypes = {
     options: PropTypes.array,
     onChangeHandler: PropTypes.func
 };
+
+const Select = styled.select`
+    margin: 10px 0;
+    padding: 5px;
+`;

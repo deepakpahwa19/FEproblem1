@@ -1,20 +1,28 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { FIND_FALCONE_ACTION_TYPES } from '../actions/actionTypes';
 import { STATUS } from '../../constants/commonConstants';
-import { getTokenAPI } from '../../services/api';
+import { getTokenAPI, findFalconeAPI } from '../../services/api';
 import { getFindFalconeFailedAction, getFindFalconeSuccessAction } from '../actions/actions';
 
 function* findFalconeActionSaga(action) {
-    const response = yield getTokenAPI();
-    switch (response.status) {
-        case STATUS.SUCCESS:
-            yield put(getFindFalconeSuccessAction(response));
-            break;
-        case STATUS.FAILED:
-            yield put(getFindFalconeFailedAction(response));
-            break;
-        default:
-            break;
+    let findFalconeApiResponse;
+    const tokenApiResponse = yield getTokenAPI();
+    console.log('token api response', tokenApiResponse);
+    if (tokenApiResponse.status !== STATUS.SUCCESS) {
+        yield put(getFindFalconeFailedAction(tokenApiResponse));
+    } else {
+        const payload = { ...action.payload, token: tokenApiResponse.data };
+        findFalconeApiResponse = yield findFalconeAPI(payload);
+        switch (findFalconeApiResponse.status) {
+            case STATUS.SUCCESS:
+                yield put(getFindFalconeSuccessAction(tokenApiResponse));
+                break;
+            case STATUS.FAILED:
+                yield put(getFindFalconeFailedAction(findFalconeApiResponse));
+                break;
+            default:
+                break;
+        }
     }
 }
 

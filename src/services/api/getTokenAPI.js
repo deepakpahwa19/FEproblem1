@@ -5,8 +5,9 @@ import { API_ERRORS } from '../../constants/commonConstants';
 
 export const getTokenAPI = () => {
     return axiosFalcone
-        .get(END_POINTS.token)
+        .post(END_POINTS.token)
         .then(response => {
+            console.log('token response api hit =>', response);
             return { status: STATUS.SUCCESS, token: response.data, statusCode: response.status };
         })
         .catch(error => {

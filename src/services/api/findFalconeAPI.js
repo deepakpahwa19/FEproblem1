@@ -2,9 +2,9 @@ import axiosFalcone from '../axios/axiosFalcone';
 import { END_POINTS, errorObject } from './apiUtil';
 import { API_ERRORS } from '../../constants/commonConstants';
 
-export const findFalconeAPI = () => {
+export const findFalconeAPI = requestBody => {
     return axiosFalcone
-        .get(END_POINTS.find)
+        .post(END_POINTS.find, requestBody)
         .then(response => {
             return { status: response.status, planetName: response.planet_name, statusCode: response.status };
         })

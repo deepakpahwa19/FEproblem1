@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { DestinationDD } from '../DestinationDD/DestinationDD';
 import { VehicleList } from '../Vehicle/VehicleList';
-import { JourneyCardView } from '../../../views';
+import { H4View, JourneyCardView } from '../../../views';
 
 export const JourneyCard = React.memo(({ index }) => {
     const [planetDistance, setPlanetDistance] = useState(0);
@@ -13,7 +13,7 @@ export const JourneyCard = React.memo(({ index }) => {
 
     return (
         <JourneyCardView>
-            <h4>Destination {index + 1}</h4>
+            <H4View>Destination {index + 1}</H4View>
             <DestinationDD
                 name={`destination-${index}`}
                 updatePlanetDistance={updatePlanetDistance}

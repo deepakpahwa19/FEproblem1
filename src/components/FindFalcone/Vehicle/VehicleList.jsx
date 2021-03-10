@@ -74,7 +74,7 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
                     name={name}
                     value={currentVehicle.name}
                     key={`${name}-${currentVehicle.name}`}
-                    isChecked={vehicle && vehicle.name === currentVehicle.name}
+                    isChecked={(vehicle && vehicle.name === currentVehicle.name) || false}
                     isDisabled={currentVehicle.max_distance < planet.distance || currentVehicle.total_no <= 0}
                     onChangeHandler={handleVehicleSelect}
                     label={`${currentVehicle.name} (${currentVehicle.total_no})`}

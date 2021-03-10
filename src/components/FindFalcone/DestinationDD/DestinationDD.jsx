@@ -8,10 +8,10 @@ import { getJourneyDestinationAction } from '../../../redux/actions/actions/jour
 
 export const DestinationDD = React.memo(({ name, journeyIndex }) => {
     const [remainingDestination, setRemainingDestination] = useState([]);
-    const { planet } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]);
+    const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]);
     const dispatch = useDispatch();
 
-    const { listOfDestination, updateDestinations, destinations } = useContext(FindFalconeContext);
+    const { listOfDestination, updateDestinations, destinations, updateVehicles } = useContext(FindFalconeContext);
 
     useEffect(() => {
         // Getting the list of name of remaining destination
@@ -33,12 +33,14 @@ export const DestinationDD = React.memo(({ name, journeyIndex }) => {
         value => {
             const prevValue = (planet || {}).name;
             const [selectedPlanet] = destinations.filter(destination => (destination || {}).name === value);
+            // Updating the vehicle name total_no in through Context API
+            if (vehicle) updateVehicles(vehicle.name, '');
             // Updating parent component to not allow other dropdowns to use this value.
             updateDestinations(prevValue, value);
             // setSelectedValue(value);
             dispatch(getJourneyDestinationAction(selectedPlanet, journeyIndex));
         },
-        [updateDestinations, planet, dispatch, destinations, journeyIndex]
+        [updateDestinations, updateVehicles, planet, dispatch, destinations, journeyIndex, vehicle]
     );
 
     return (

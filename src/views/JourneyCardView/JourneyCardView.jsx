@@ -11,8 +11,8 @@ const CardContainer = styled.form`
     width: min(40vmax, 250px);
     /* min-width: 200px; */
     max-width: 300px;
-    padding: 10px;
-    margin: 10px;
+    padding: 1.5em;
+    margin: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

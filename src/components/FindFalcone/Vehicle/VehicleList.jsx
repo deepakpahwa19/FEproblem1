@@ -13,6 +13,7 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
 
     const [remainingVehicles, setRemainingVehicles] = useState([]);
     const isSelected = useRef(false);
+    // const [selectedVehicleName, setSelectedVehicleName] = useState(null);
 
     const { listOfVehicle = [], updateVehicles } = useContext(FindFalconeContext);
 
@@ -27,7 +28,8 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
                 }
             }
             isSelected.current = true;
-            updateVehicles(prevVehicleName, vehicleName, journeyIndex);
+            // setSelectedVehicleName(vehicleName);
+            updateVehicles(prevVehicleName, vehicleName);
         },
         [listOfVehicle, updateVehicles, dispatch, vehicle, journeyIndex]
     );
@@ -53,7 +55,15 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
         setRemainingVehicles(list);
     }, [listOfVehicle, vehicle, dispatch, journeyIndex]);
 
-    if (!planet) {
+    // useEffect(() => {
+    //     if ((planet || {}).name && selectedVehicleName)
+    //         // Selecting destination will render the vehicleList again with no value selected,
+    //         // so increasing the total_no of previously selected vehicle
+    //         updateVehicles(selectedVehicleName, '');
+    // }, [planet, updateVehicles, selectedVehicleName]);
+
+    // Not showing Vehicle List if no destination is selected
+    if (!(planet || {}).name) {
         return <></>;
     }
 

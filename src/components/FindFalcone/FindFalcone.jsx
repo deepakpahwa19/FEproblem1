@@ -15,28 +15,10 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
         destinations.map(destination => destination && { ...destination })
     );
     const [listOfVehicle, setListOfVehicle] = useState(() => vehicles.map(vehicle => vehicle && { ...vehicle }));
-    const [selectedDestinations, setSelectedDestinations] = useState(() => new Array(destinations.length));
+    const [selectedDestinations, setSelectedDestinations] = useState(() => new Array(destinations.length).fill(null));
     const [selectedVehicles, setSelectedVehicles] = useState(new Array(vehicles.length));
     const dispatch = useDispatch();
     const [journeyDetail, setJourneyDetail] = useState(() => new Array(numberOfCards.length).fill({}));
-
-    // useEffect(() => {
-    //     // Creating local listOfDestination array from destinations from redux
-    //     if (destinations.length > 0 && listOfDestination.length === 0) {
-    //         const list = destinations.map(destination => destination && { ...destination });
-    //         const selectedList = new Array(destinations.length);
-    //         setListOfDestination(list);
-    //         setSelectedDestinations(selectedList);
-    //     }
-
-    //     // Creating local listOfVehicle array from vehicles from redux
-    //     if (vehicles.length > 0 && listOfVehicle.length === 0) {
-    //         const list = vehicles.map(vehicle => vehicle && { ...vehicle });
-    //         const selectedList = new Array(vehicles.length);
-    //         setListOfVehicle(list);
-    //         setSelectedVehicles(selectedList);
-    //     }
-    // }, [listOfDestination, destinations, listOfVehicle, vehicles]);
 
     const getTotalTime = useMemo(() => {
         let sum = 0;
@@ -50,81 +32,66 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
 
     /**
      * @description: To keep track of the selected destination in each destination dropdown displaying in each card
-     * @summary: There will be two array of same length to keep track of selected destinations and remaining destinations
+     * @summary: There will be two arrays of same length to keep track of selected destinations and remaining destinations
      * available for other dropdowns
      * @param: newValue = new selected destination
      * @param: prevValue = previous selected destination
      */
     const updateDestinations = useCallback(
-        (prevValue, newValue, journeyIndex) => {
+        (prevValue, newValue) => {
             // creating new array to prevent mutating the state
-            let newDestinationList = new Array(listOfDestination.length),
-                newSelectedDestinationList = new Array(listOfDestination.length),
-                newJourneyDetail = journeyDetail.map(journey => ({ ...journey }));
+            let newDestinationList = new Array(listOfDestination.length).fill(null),
+                newSelectedDestinationList = new Array(listOfDestination.length).fill(null);
 
             for (let index in listOfDestination) {
-                // if destination.name at index matches the newValue then saving the destination in selectedDestinations state
-                if (listOfDestination[index] && listOfDestination[index].name === newValue) {
-                    newDestinationList[index] = null;
-                    newSelectedDestinationList[index] = listOfDestination[index];
-                    // newJourneyDetail[journeyIndex].distance = listOfDestination[index].distance;
-                    // newJourneyDetail[journeyIndex].speed = 0;
-                } else {
-                    newDestinationList[index] = listOfDestination[index] && { ...listOfDestination[index] };
-                }
-            }
-
-            for (let index in selectedDestinations) {
-                // if destination.name at index matches the prevValue then saving the destination in listOfDestination state and marking
+                // if prevValue matches with the selectedDestinations[index] then put prevValue object into newDestinationList
+                // else pass the selectedDestinations[index] value to newSelectedDestinationList[index]
                 if (prevValue && selectedDestinations[index] && prevValue === selectedDestinations[index].name) {
-                    newDestinationList[index] = selectedDestinations[index];
                     newSelectedDestinationList[index] = null;
+                    newDestinationList[index] = selectedDestinations[index];
                 } else {
-                    newSelectedDestinationList[index] = selectedDestinations[index] && {
-                        ...selectedDestinations[index]
-                    };
+                    newSelectedDestinationList[index] = selectedDestinations[index];
+                }
+                // if newValue matches with the listOfDestination[index] then put newValue object into newSelectedDestinationList
+                // else pass the listOfDestination[index] value to newDestinationList[index]
+                if (listOfDestination[index] && listOfDestination[index].name === newValue) {
+                    newSelectedDestinationList[index] = listOfDestination[index];
+                    newDestinationList[index] = null;
+                } else {
+                    // if newDestinationList[index] does not have value then take the value from listOfDestination[index]
+                    // to prevent overriding of the value done in the if condition for prevValue match
+                    newDestinationList[index] = newDestinationList[index]
+                        ? newDestinationList[index]
+                        : listOfDestination[index];
                 }
             }
 
-            setJourneyDetail(newJourneyDetail);
             setListOfDestination(newDestinationList);
             setSelectedDestinations(newSelectedDestinationList);
         },
-        [listOfDestination, selectedDestinations, journeyDetail]
+        [listOfDestination, selectedDestinations]
     );
 
     const updateVehicles = useCallback(
-        (prevValue, nextValue, journeyIndex) => {
-            let newVehicleList = new Array(listOfVehicle.length),
-                newSelectedVehicleList = new Array(listOfVehicle.length),
-                newJourneyDetail = journeyDetail.map(journey => ({ ...journey }));
+        (prevValue, nextValue) => {
+            let newVehicleList = new Array(listOfVehicle.length).fill(null);
+            // newSelectedVehicleList = new Array(listOfVehicle.length).fill(null);
             for (let index in listOfVehicle) {
                 newVehicleList[index] = { ...listOfVehicle[index] };
                 if (listOfVehicle[index].name === nextValue) {
                     newVehicleList[index].total_no--;
-                    newSelectedVehicleList[index] = { ...listOfVehicle[index] };
-                    newJourneyDetail[journeyIndex].speed = listOfVehicle[index].speed;
+                    // newSelectedVehicleList[index] = { ...listOfVehicle[index] };
                 } else if (listOfVehicle[index].name === prevValue) {
                     newVehicleList[index].total_no++;
                 }
             }
-            setJourneyDetail(newJourneyDetail);
             setListOfVehicle(newVehicleList);
-            setSelectedVehicles(newSelectedVehicleList);
+            // setSelectedVehicles(newSelectedVehicleList);
         },
-        [listOfVehicle, journeyDetail]
+        [listOfVehicle]
     );
 
-    const handleFindFalcone = useCallback(() => {
-        console.log('InsideFind Falcone button');
-        console.log(selectedDestinations, selectedVehicles);
-        const listOfSelectedDestination = selectedDestinations
-            .filter(destination => !destination)
-            .map(destination => destination.name);
-        const listOfSelectedVehicle = selectedVehicles.filter(vehicle => !vehicle).map(vehicle => vehicle.name);
-        console.log(listOfSelectedVehicle, listOfSelectedVehicle);
-        dispatch(getFindFalconeAction(listOfSelectedDestination, listOfSelectedVehicle));
-    }, [selectedDestinations, selectedVehicles, dispatch]);
+    const handleFindFalcone = useCallback(() => {}, []);
 
     return (
         <>

@@ -17,7 +17,7 @@ export const DestinationDD = React.memo(({ name, journeyIndex }) => {
         // Getting the list of name of remaining destination
         const destinationList = listOfDestination.map(destination => destination && destination.name);
 
-        // Getting the name of selected dropdown value
+        // Adding the name of selected planet name to the dropdown
         if (planet)
             for (let index in destinations) {
                 if (destinations[index].name === planet.name) {
@@ -27,14 +27,14 @@ export const DestinationDD = React.memo(({ name, journeyIndex }) => {
             }
 
         setRemainingDestination(destinationList);
-    }, [listOfDestination, planet, destinations]);
+    }, [listOfDestination, planet, destinations, journeyIndex]);
 
     const handleDropdownChange = useCallback(
         value => {
             const prevValue = (planet || {}).name;
             const [selectedPlanet] = destinations.filter(destination => (destination || {}).name === value);
             // Updating parent component to not allow other dropdowns to use this value.
-            updateDestinations(prevValue, value, journeyIndex);
+            updateDestinations(prevValue, value);
             // setSelectedValue(value);
             dispatch(getJourneyDestinationAction(selectedPlanet, journeyIndex));
         },
@@ -50,5 +50,5 @@ export const DestinationDD = React.memo(({ name, journeyIndex }) => {
 
 DestinationDD.propTypes = {
     name: PropTypes.string,
-    handleSelection: PropTypes.func
+    journeyIndex: PropTypes.number
 };

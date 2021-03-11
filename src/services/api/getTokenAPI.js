@@ -8,7 +8,7 @@ export const getTokenAPI = () => {
         .post(END_POINTS.token)
         .then(response => {
             console.log('token response api hit =>', response);
-            return { status: STATUS.SUCCESS, token: response.data, statusCode: response.status };
+            return { status: STATUS.SUCCESS, token: response.data.token, statusCode: response.status };
         })
         .catch(error => {
             if (error.response) {

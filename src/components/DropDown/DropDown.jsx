@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { DropDownView } from '../../views';
 
-export const DropDown = React.memo(({ name, options, onChangeHandler }) => {
+export const DropDown = React.memo(({ name, options, onChangeHandler, isNotValid }) => {
     const [value, setValue] = useState('');
 
     const handleChange = useCallback(
@@ -15,5 +15,14 @@ export const DropDown = React.memo(({ name, options, onChangeHandler }) => {
 
     // console.log(`Inside dropdown => ${name}`, value, options);
 
-    return <DropDownView name={name} id={name} value={value} options={options} onChangeHandler={handleChange} />;
+    return (
+        <DropDownView
+            name={name}
+            id={name}
+            value={value}
+            options={options}
+            onChangeHandler={handleChange}
+            isNotValid={isNotValid}
+        />
+    );
 });

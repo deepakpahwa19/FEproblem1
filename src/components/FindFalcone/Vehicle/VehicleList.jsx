@@ -6,6 +6,7 @@ import { RadioButtonView } from '../../../views';
 import { FindFalconeContext } from '../FindFalcone';
 import { getJourneyNameWithIndex } from '../../../constants/commonConstants';
 import { getJourneyVehicleAction } from '../../../redux/actions/actions/journeyActions';
+import { RequiredElement } from '../../../views/';
 
 export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) => {
     const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]);
@@ -13,9 +14,8 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
 
     const [remainingVehicles, setRemainingVehicles] = useState([]);
     const isSelected = useRef(false);
-    // const [selectedVehicleName, setSelectedVehicleName] = useState(null);
 
-    const { listOfVehicle = [], updateVehicles } = useContext(FindFalconeContext);
+    const { listOfVehicle = [], updateVehicles, isNotValid } = useContext(FindFalconeContext);
 
     const handleVehicleSelect = useCallback(
         event => {
@@ -28,7 +28,6 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
                 }
             }
             isSelected.current = true;
-            // setSelectedVehicleName(vehicleName);
             updateVehicles(prevVehicleName, vehicleName);
         },
         [listOfVehicle, updateVehicles, dispatch, vehicle, journeyIndex]
@@ -48,19 +47,14 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
                 list.push({ ...currentVehicle });
             }
         }
+        // isSelected ref is used to prevent the continuous update on redux after every render.
         if (isSelected.current && newSelectedVehicle.name) {
             isSelected.current = false;
+            // Updating vehicleObject with new value of total_no in redux
             dispatch(getJourneyVehicleAction(newSelectedVehicle, journeyIndex));
         }
         setRemainingVehicles(list);
     }, [listOfVehicle, vehicle, dispatch, journeyIndex]);
-
-    // useEffect(() => {
-    //     if ((planet || {}).name && selectedVehicleName)
-    //         // Selecting destination will render the vehicleList again with no value selected,
-    //         // so increasing the total_no of previously selected vehicle
-    //         updateVehicles(selectedVehicleName, '');
-    // }, [planet, updateVehicles, selectedVehicleName]);
 
     // Not showing Vehicle List if no destination is selected
     if (!(planet || {}).name) {
@@ -69,6 +63,7 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
 
     return (
         <>
+            {isNotValid && !(vehicle || {}).name && <RequiredElement />}
             {remainingVehicles.map((currentVehicle, index) => (
                 <RadioButtonView
                     name={name}

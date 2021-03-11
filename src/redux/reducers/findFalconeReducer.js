@@ -12,7 +12,7 @@ const initialAction = {
 const findFalconeReducer = (state = initialAction, action) => {
     switch (action.type) {
         case FIND_FALCONE_ACTION_TYPES.FIND_FALCONE:
-            return updateState(state, action.payload);
+            return updateState(initialAction, action.payload);
         case FIND_FALCONE_ACTION_TYPES.FIND_FALCONE_SUCCESS:
         case FIND_FALCONE_ACTION_TYPES.FIND_FALCONE_FAILED:
             return updateState(state, action.payload);

@@ -1,6 +1,6 @@
 import { FIND, PLANETS, STATUS, TOKEN, VEHICLES } from '../../constants/commonConstants';
 
-export const errorObject = (statusCode, errorCode, errorMessage = '') => ({
+export const errorObject = (statusCode, errorCode = '', errorMessage = '') => ({
     status: STATUS.ERROR,
     statusCode: statusCode,
     errorCode: errorCode,

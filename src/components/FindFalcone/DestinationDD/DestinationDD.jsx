@@ -11,7 +11,9 @@ export const DestinationDD = React.memo(({ name, journeyIndex }) => {
     const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]);
     const dispatch = useDispatch();
 
-    const { listOfDestination, updateDestinations, destinations, updateVehicles } = useContext(FindFalconeContext);
+    const { listOfDestination, updateDestinations, destinations, updateVehicles, isNotValid } = useContext(
+        FindFalconeContext
+    );
 
     useEffect(() => {
         // Getting the list of name of remaining destination
@@ -45,7 +47,12 @@ export const DestinationDD = React.memo(({ name, journeyIndex }) => {
 
     return (
         remainingDestination.length > 0 && (
-            <DropDown name={name} options={remainingDestination} onChangeHandler={handleDropdownChange} />
+            <DropDown
+                name={name}
+                options={remainingDestination}
+                onChangeHandler={handleDropdownChange}
+                isNotValid={isNotValid && !(planet || {}).name}
+            />
         )
     );
 });

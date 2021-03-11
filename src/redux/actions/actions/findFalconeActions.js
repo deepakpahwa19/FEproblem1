@@ -1,9 +1,9 @@
 import { FIND_FALCONE_ACTION_TYPES } from '../actionTypes';
 
-export const getFindFalconeAction = (destinations, vehicles) => ({
+export const getFindFalconeAction = (planets, vehicles) => ({
     type: FIND_FALCONE_ACTION_TYPES.FIND_FALCONE,
     payload: {
-        planet_names: destinations,
+        planet_names: planets,
         vehicle_names: vehicles
     }
 });

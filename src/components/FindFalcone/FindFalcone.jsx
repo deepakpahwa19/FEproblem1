@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FlexContainer, H4 } from '../../views';
 import { JourneyCard } from './JourneyCard/JourneyCard';
 import { Button } from '../../views/CommonUI/ButtonView';
-import { useDispatch } from 'react-redux';
-import { getFindFalconeAction } from '../../redux/actions/actions/findFalconeActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFindFalconeAction } from '../../redux/actions/actions';
+import { ErrorMessage } from '../../views/CommonUI/ErrorMessage';
 
 export const FindFalconeContext = React.createContext();
 
@@ -16,19 +17,11 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
     );
     const [listOfVehicle, setListOfVehicle] = useState(() => vehicles.map(vehicle => vehicle && { ...vehicle }));
     const [selectedDestinations, setSelectedDestinations] = useState(() => new Array(destinations.length).fill(null));
-    const [selectedVehicles, setSelectedVehicles] = useState(new Array(vehicles.length));
-    const dispatch = useDispatch();
-    const [journeyDetail, setJourneyDetail] = useState(() => new Array(numberOfCards.length).fill({}));
+    const journeys = useSelector(state => state.journey);
+    const [isNotValid, setIsNotValid] = useState(false);
+    const { errorMessage } = useSelector(state => state.findFalcone);
 
-    const getTotalTime = useMemo(() => {
-        let sum = 0;
-        journeyDetail.forEach(journey => {
-            if (journey.distance && journey.speed) {
-                sum += journey.distance / journey.speed;
-            }
-        });
-        return sum;
-    }, [journeyDetail]);
+    const dispatch = useDispatch();
 
     /**
      * @description: To keep track of the selected destination in each destination dropdown displaying in each card
@@ -91,11 +84,37 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
         [listOfVehicle]
     );
 
-    const handleFindFalcone = useCallback(() => {}, []);
+    const getTotalTime = useMemo(() => {
+        let sum = 0;
+        Object.values(journeys).forEach(({ planet, vehicle }) => {
+            if ((planet || {}).distance && (vehicle || {}).speed) {
+                sum += planet.distance / vehicle.speed;
+            }
+        });
+        return sum;
+    }, [journeys]);
+
+    const handleFindFalcone = useCallback(() => {
+        const selectedPlanets = [],
+            selectedVehicles = [];
+
+        Object.values(journeys).forEach(({ planet, vehicle }) => {
+            if ((planet || {}).name) selectedPlanets.push(planet.name);
+            if ((vehicle || {}).name) selectedVehicles.push(vehicle.name);
+        });
+
+        if (selectedPlanets.length === 4 && selectedVehicles.length === 4) {
+            setIsNotValid(false);
+            dispatch(getFindFalconeAction(selectedPlanets, selectedVehicles));
+        } else {
+            setIsNotValid(true);
+        }
+    }, [journeys, dispatch]);
 
     return (
         <>
             <FlexContainer direction='column'>
+                <ErrorMessage>{errorMessage}</ErrorMessage>
                 <FlexContainer>
                     <FindFalconeContext.Provider
                         value={{
@@ -103,11 +122,12 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
                             updateDestinations,
                             destinations,
                             listOfVehicle,
-                            updateVehicles
+                            updateVehicles,
+                            isNotValid
                         }}
                     >
                         {numberOfCards.map((card, index) => (
-                            <JourneyCard key={`journey-${index}`} index={index} />
+                            <JourneyCard key={`journey-${index}`} index={index} isNotValid={isNotValid} />
                         ))}
                     </FindFalconeContext.Provider>
                 </FlexContainer>

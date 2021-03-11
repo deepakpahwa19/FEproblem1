@@ -11,13 +11,13 @@ function* findFalconeActionSaga(action) {
     if (tokenApiResponse.status !== STATUS.SUCCESS) {
         yield put(getFindFalconeFailedAction(tokenApiResponse));
     } else {
-        const payload = { ...action.payload, token: tokenApiResponse.data };
+        const payload = { ...action.payload, token: tokenApiResponse.tokens };
         findFalconeApiResponse = yield findFalconeAPI(payload);
         switch (findFalconeApiResponse.status) {
             case STATUS.SUCCESS:
                 yield put(getFindFalconeSuccessAction(tokenApiResponse));
                 break;
-            case STATUS.FAILED:
+            case STATUS.ERROR:
                 yield put(getFindFalconeFailedAction(findFalconeApiResponse));
                 break;
             default:

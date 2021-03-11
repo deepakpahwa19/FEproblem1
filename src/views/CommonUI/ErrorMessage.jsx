@@ -6,6 +6,7 @@ export const ErrorMessage = React.memo(({ children }) => {
 });
 
 const ErrorMessageUI = styled.h5`
-    margin: 1px auto;
+    margin: 1rem;
     color: red;
+    text-align: center;
 `;

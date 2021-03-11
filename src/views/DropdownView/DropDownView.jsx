@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { RequiredElement } from '../';
 
-export const DropDownView = React.memo(({ name, value = 'Select', options = [], onChangeHandler, isNotValid }) => {
+export const DropDownView = React.memo(({ name, value = 'Select', options = [], onChangeHandler, isValid }) => {
     return (
         <>
-            {isNotValid && <RequiredElement />}
+            {isValid && <RequiredElement />}
             <Select name={name} value={value} onChange={onChangeHandler}>
                 <option value='Select'>Select</option>
                 {options

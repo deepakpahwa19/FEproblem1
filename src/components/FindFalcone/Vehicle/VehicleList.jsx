@@ -15,7 +15,7 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
     const [remainingVehicles, setRemainingVehicles] = useState([]);
     const isSelected = useRef(false);
 
-    const { listOfVehicle = [], updateVehicles, isNotValid } = useContext(FindFalconeContext);
+    const { listOfVehicle = [], updateVehicles, isValid } = useContext(FindFalconeContext);
 
     const handleVehicleSelect = useCallback(
         event => {
@@ -63,7 +63,7 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
 
     return (
         <>
-            {isNotValid && !(vehicle || {}).name && <RequiredElement />}
+            {!isValid && !(vehicle || {}).name && <RequiredElement />}
             {remainingVehicles.map((currentVehicle, index) => (
                 <RadioButtonView
                     name={name}

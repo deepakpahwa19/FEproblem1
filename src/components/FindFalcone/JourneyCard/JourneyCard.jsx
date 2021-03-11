@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { DestinationDD } from '../DestinationDD/DestinationDD';
 import { VehicleList } from '../Vehicle/VehicleList';
 import { H4, JourneyCardView } from '../../../views';
-import { ErrorMessage } from '../../../views/CommonUI/ErrorMessage';
 import { useSelector } from 'react-redux';
 import { getJourneyNameWithIndex } from '../../../constants/commonConstants';
 
-export const JourneyCard = React.memo(({ index, isNotValid }) => {
+export const JourneyCard = React.memo(({ index, isValid }) => {
     const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(index)]);
 
     const isJourneyNotValid = useMemo(() => {
-        return isNotValid && (!(planet || {}).name || !(vehicle || {}).name);
-    }, [planet, vehicle, isNotValid]);
+        return !isValid && (!(planet || {}).name || !(vehicle || {}).name);
+    }, [planet, vehicle, isValid]);
+
     return (
-        <JourneyCardView isNotValid={isJourneyNotValid}>
+        <JourneyCardView isValid={isJourneyNotValid}>
             <H4>Destination {index + 1}</H4>
             <DestinationDD name={`destination-${index}`} journeyIndex={index} />
             <VehicleList key={`vehicle-${index}`} name={`vehicle-${index}`} journeyIndex={index} />

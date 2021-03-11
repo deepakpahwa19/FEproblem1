@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const JourneyCardView = React.memo(({ children, isNotValid }) => {
-    return <CardContainer isNotValid={isNotValid}>{children}</CardContainer>;
+export const JourneyCardView = React.memo(({ children, isValid }) => {
+    return <CardContainer isValid={isValid}>{children}</CardContainer>;
 });
 
 const CardContainer = styled.div`
     flex-grow: 1;
     height: 250px;
     width: min(40vmax, 250px);
-    border: ${({ isNotValid }) => (isNotValid ? '1px solid red' : '')};
+    border: ${({ isValid }) => (isValid ? '1px solid red' : '')};
     /* min-width: 200px; */
     max-width: 300px;
     padding: 1.5em;

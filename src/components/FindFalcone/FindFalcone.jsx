@@ -18,7 +18,7 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
     const [listOfVehicle, setListOfVehicle] = useState(() => vehicles.map(vehicle => vehicle && { ...vehicle }));
     const [selectedDestinations, setSelectedDestinations] = useState(() => new Array(destinations.length).fill(null));
     const journeys = useSelector(state => state.journey);
-    const [isNotValid, setIsNotValid] = useState(false);
+    const [isValid, setIsValid] = useState(true);
     const { errorMessage } = useSelector(state => state.findFalcone);
 
     const dispatch = useDispatch();
@@ -68,7 +68,6 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
     const updateVehicles = useCallback(
         (prevValue, nextValue) => {
             let newVehicleList = new Array(listOfVehicle.length).fill(null);
-            // newSelectedVehicleList = new Array(listOfVehicle.length).fill(null);
             for (let index in listOfVehicle) {
                 newVehicleList[index] = { ...listOfVehicle[index] };
                 if (listOfVehicle[index].name === nextValue) {
@@ -79,7 +78,6 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
                 }
             }
             setListOfVehicle(newVehicleList);
-            // setSelectedVehicles(newSelectedVehicleList);
         },
         [listOfVehicle]
     );
@@ -99,15 +97,15 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
             selectedVehicles = [];
 
         Object.values(journeys).forEach(({ planet, vehicle }) => {
-            if ((planet || {}).name) selectedPlanets.push(planet.name);
-            if ((vehicle || {}).name) selectedVehicles.push(vehicle.name);
+            if (!!(planet || {}).name) selectedPlanets.push(planet.name);
+            if (!!(vehicle || {}).name) selectedVehicles.push(vehicle.name);
         });
 
         if (selectedPlanets.length === 4 && selectedVehicles.length === 4) {
-            setIsNotValid(false);
+            setIsValid(true);
             dispatch(getFindFalconeAction(selectedPlanets, selectedVehicles));
         } else {
-            setIsNotValid(true);
+            setIsValid(false);
         }
     }, [journeys, dispatch]);
 
@@ -123,11 +121,11 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
                             destinations,
                             listOfVehicle,
                             updateVehicles,
-                            isNotValid
+                            isValid
                         }}
                     >
                         {numberOfCards.map((card, index) => (
-                            <JourneyCard key={`journey-${index}`} index={index} isNotValid={isNotValid} />
+                            <JourneyCard key={`journey-${index}`} index={index} isValid={isValid} />
                         ))}
                     </FindFalconeContext.Provider>
                 </FlexContainer>

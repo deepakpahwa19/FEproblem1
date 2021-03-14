@@ -1,12 +1,14 @@
 import './App.css';
-import { HomePage } from './pages';
+import { Routes } from './routes/routes';
 import GlobalStyles from './styles/globalStyles';
+import { Navbar } from './components/';
 
 function App() {
     return (
         <>
             <GlobalStyles />
-            <HomePage />
+            <Navbar />
+            <Routes />
         </>
     );
 }

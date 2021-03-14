@@ -1,1 +1,2 @@
-export { FindFalconeFeature } from './FindFalcone/FindFalconeFeature';
+export { FindFalcone } from './FindFalcone/FindFalcone';
+export { Navbar } from './NavBar/Navbar';

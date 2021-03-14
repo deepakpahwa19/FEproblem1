@@ -11,5 +11,5 @@ export const FlexContainer = styled.div`
     flex-wrap: wrap;
     /* align-items: flex-start; */
     /* align-content: flex-end; */
-    margin: auto;
+    margin: ${({ margin }) => (margin ? margin : 'auto')};
 `;

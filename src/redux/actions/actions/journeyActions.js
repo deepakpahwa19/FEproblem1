@@ -15,3 +15,7 @@ export const getJourneyVehicleAction = (vehicle, journeyIndex) => {
         journeyIndex: journeyIndex
     };
 };
+
+export const getResetJourneyAction = () => {
+    return { type: JOURNEY_ACTION_TYPES.RESET_JOURNEY, payload: {} };
+};

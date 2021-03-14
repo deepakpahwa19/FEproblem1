@@ -6,7 +6,23 @@ export const findFalconeAPI = requestBody => {
     return axiosFalcone
         .post(END_POINTS.find, requestBody)
         .then(response => {
-            return { status: response.status, planetName: response.planet_name, statusCode: response.status };
+            console.log('findFalconeAPI success =>', response, response.data);
+            const { status, planet_name } = response.data;
+            if (!!planet_name) {
+                return {
+                    status: STATUS.SUCCESS,
+                    planetName: planet_name,
+                    falconeFound: status,
+                    statusCode: response.status
+                };
+            } else {
+                return {
+                    status: STATUS.ERROR,
+                    planetName: '',
+                    falconeFound: status,
+                    statusCode: response.status
+                };
+            }
         })
         .catch(error => {
             console.log('findFalconeAPI =>', error, error.response, error.message);

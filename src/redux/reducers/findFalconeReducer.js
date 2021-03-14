@@ -6,11 +6,15 @@ const initialAction = {
     status: '',
     statusCode: '',
     errorCode: '',
-    errorMessage: ''
+    errorMessage: '',
+    falconeFound: '',
+    timeTake: '',
+    planetName: ''
 };
 
 const findFalconeReducer = (state = initialAction, action) => {
     switch (action.type) {
+        case FIND_FALCONE_ACTION_TYPES.RESET_FIND_FALCONE:
         case FIND_FALCONE_ACTION_TYPES.FIND_FALCONE:
             return updateState(initialAction, action.payload);
         case FIND_FALCONE_ACTION_TYPES.FIND_FALCONE_SUCCESS:

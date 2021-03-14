@@ -31,6 +31,8 @@ const journeyReducer = (state = initialState, action) => {
                     ...payload
                 }
             };
+        case JOURNEY_ACTION_TYPES.RESET_JOURNEY:
+            return initialState;
         default:
             break;
     }
@@ -38,8 +40,3 @@ const journeyReducer = (state = initialState, action) => {
 };
 
 export default journeyReducer;
-
-const getUpdatedList = (list, index, value) => {
-    list[index] = value;
-    return list;
-};

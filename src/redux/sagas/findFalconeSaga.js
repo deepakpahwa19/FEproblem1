@@ -11,11 +11,14 @@ function* findFalconeActionSaga(action) {
     if (tokenApiResponse.status !== STATUS.SUCCESS) {
         yield put(getFindFalconeFailedAction(tokenApiResponse));
     } else {
-        const payload = { ...action.payload, token: tokenApiResponse.token };
+        // To keep timeTaken out of action.payload while hitting /find endPoint.
+        const { timeTaken, ...newPayload } = action.payload;
+        const payload = { ...newPayload, token: tokenApiResponse.token };
         findFalconeApiResponse = yield findFalconeAPI(payload);
+        console.log('findFalconeApiResponse =>', findFalconeApiResponse);
         switch (findFalconeApiResponse.status) {
             case STATUS.SUCCESS:
-                yield put(getFindFalconeSuccessAction(tokenApiResponse));
+                yield put(getFindFalconeSuccessAction(findFalconeApiResponse));
                 break;
             case STATUS.ERROR:
                 yield put(getFindFalconeFailedAction(findFalconeApiResponse));

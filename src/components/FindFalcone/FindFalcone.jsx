@@ -1,11 +1,12 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FlexContainer, H4 } from '../../views';
+import { FlexContainer, H4, H1, H3 } from '../../views';
 import { JourneyCard } from './JourneyCard/JourneyCard';
 import { Button } from '../../views/CommonUI/ButtonView';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFindFalconeAction } from '../../redux/actions/actions';
 import { ErrorMessage } from '../../views/CommonUI/ErrorMessage';
+import { RedirectToResult } from '../../routes/routes';
 
 export const FindFalconeContext = React.createContext();
 
@@ -19,7 +20,7 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
     const [selectedDestinations, setSelectedDestinations] = useState(() => new Array(destinations.length).fill(null));
     const journeys = useSelector(state => state.journey);
     const [isValid, setIsValid] = useState(true);
-    const { errorMessage } = useSelector(state => state.findFalcone);
+    const { errorMessage, falconeFound } = useSelector(state => state.findFalcone);
 
     const dispatch = useDispatch();
 
@@ -72,7 +73,6 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
                 newVehicleList[index] = { ...listOfVehicle[index] };
                 if (listOfVehicle[index].name === nextValue) {
                     newVehicleList[index].total_no--;
-                    // newSelectedVehicleList[index] = { ...listOfVehicle[index] };
                 } else if (listOfVehicle[index].name === prevValue) {
                     newVehicleList[index].total_no++;
                 }
@@ -82,7 +82,7 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
         [listOfVehicle]
     );
 
-    const getTotalTime = useMemo(() => {
+    const timeTaken = useMemo(() => {
         let sum = 0;
         Object.values(journeys).forEach(({ planet, vehicle }) => {
             if ((planet || {}).distance && (vehicle || {}).speed) {
@@ -92,7 +92,7 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
         return sum;
     }, [journeys]);
 
-    const handleFindFalcone = useCallback(() => {
+    const handleFindFalconeClick = useCallback(() => {
         const selectedPlanets = [],
             selectedVehicles = [];
 
@@ -103,15 +103,21 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
 
         if (selectedPlanets.length === 4 && selectedVehicles.length === 4) {
             setIsValid(true);
-            dispatch(getFindFalconeAction(selectedPlanets, selectedVehicles));
+            dispatch(getFindFalconeAction(selectedPlanets, selectedVehicles, timeTaken));
         } else {
             setIsValid(false);
         }
-    }, [journeys, dispatch]);
+    }, [journeys, dispatch, timeTaken]);
+
+    if (falconeFound) {
+        return <RedirectToResult />;
+    }
 
     return (
         <>
             <FlexContainer direction='column'>
+                <H1>Finding Falcone!</H1>
+                <H3>Select planets you want to search in:</H3>
                 <ErrorMessage>{errorMessage}</ErrorMessage>
                 <FlexContainer>
                     <FindFalconeContext.Provider
@@ -129,8 +135,8 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
                         ))}
                     </FindFalconeContext.Provider>
                 </FlexContainer>
-                <H4>Total Time: {getTotalTime}</H4>
-                <Button onClick={handleFindFalcone}>Find Falcone</Button>
+                <H4>Total Time: {timeTaken}</H4>
+                <Button onClick={handleFindFalconeClick}>Find Falcone</Button>
             </FlexContainer>
         </>
     );

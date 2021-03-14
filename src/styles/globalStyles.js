@@ -56,6 +56,11 @@ const GlobalStyles = createGlobalStyle`
     font-size: 1.2rem
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    margin: 10px auto;
+  }
+
 
 `;
 

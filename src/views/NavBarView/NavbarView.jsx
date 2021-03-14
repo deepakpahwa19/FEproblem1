@@ -11,6 +11,7 @@ export const Nav = styled.nav`
     position: sticky;
     top: 0;
     z-index: 999;
+    width: 100%;
 `;
 
 export const NavbarContainer = styled(Container)`
@@ -18,7 +19,6 @@ export const NavbarContainer = styled(Container)`
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    /* ${Container} */
 `;
 
 export const NavLogo = styled(Link)`

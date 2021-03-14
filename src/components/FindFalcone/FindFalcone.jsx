@@ -118,7 +118,7 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
             <FlexContainer direction='column'>
                 <H1>Finding Falcone!</H1>
                 <H3>Select planets you want to search in:</H3>
-                <ErrorMessage>{errorMessage}</ErrorMessage>
+                {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
                 <FlexContainer>
                     <FindFalconeContext.Provider
                         value={{

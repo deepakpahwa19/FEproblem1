@@ -1,4 +1,4 @@
-const s = [
+export const destinations = [
     { name: 'Donlon', distance: 100 },
     { name: 'Enchai', distance: 200 },
     { name: 'Jebing', distance: 300 },

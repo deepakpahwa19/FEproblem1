@@ -6,7 +6,7 @@ import { RadioButtonView } from '../../../views';
 import { FindFalconeContext } from '../FindFalcone';
 import { getJourneyNameWithIndex } from '../../../constants/commonConstants';
 import { getJourneyVehicleAction } from '../../../redux/actions/actions/journeyActions';
-import { RequiredElement } from '../../../views/';
+import { RequiredElement } from '../../../views';
 
 export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) => {
     const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]);

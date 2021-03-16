@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { DropDown } from '../../DropDown/DropDown';
-import { FindFalconeContext } from '../FindFalcone';
+import { DropDown } from '../../../../components/DropDown/DropDown';
+import { FindFalconeContext } from '../../FindFalcone';
 import { useDispatch, useSelector } from 'react-redux';
-import { getJourneyNameWithIndex } from '../../../constants/commonConstants';
-import { getJourneyDestinationAction } from '../../../redux/actions/actions/journeyActions';
+import { getJourneyNameWithIndex } from '../../../../constants/commonConstants';
+import { getJourneyDestinationAction } from '../../../../redux/actions/actions/journeyActions';
 
 export const DestinationDD = React.memo(({ name, journeyIndex }) => {
     const [remainingDestination, setRemainingDestination] = useState([]);

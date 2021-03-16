@@ -3,7 +3,7 @@ import { AutoCompleteItem } from './AutoCompleteItem';
 import { FaSortDown, FaSortUp } from 'react-icons/fa';
 import styled from 'styled-components';
 
-export const AutoComplete = ({ id, data, onSelect }) => {
+export const AutoComplete = ({ id, options, onSelect }) => {
     const [isVisible, setVisible] = useState(false);
     const [search, setSearch] = useState('');
     const [cursor, setCursor] = useState(-1);
@@ -33,13 +33,13 @@ export const AutoComplete = ({ id, data, onSelect }) => {
     };
 
     const suggestions = useMemo(() => {
-        if (!search) return data;
+        if (!search) return options;
 
         setCursor(-1);
         scrollIntoView(0);
 
-        return data.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
-    }, [data, search]);
+        return options.filter(item => item.toLowerCase().includes(search.toLowerCase()));
+    }, [options, search]);
 
     useEffect(() => {
         if (cursor < 0 || cursor > suggestions.length || !searchResultRef) {
@@ -62,7 +62,7 @@ export const AutoComplete = ({ id, data, onSelect }) => {
         } else if (e.key === 'Escape') {
             hideSuggestion();
         } else if (e.key === 'Enter' && cursor >= 0) {
-            setSearch(suggestions[cursor].name);
+            setSearch(suggestions[cursor]);
             hideSuggestion();
             onSelect(suggestions[cursor]);
         } else {
@@ -71,7 +71,7 @@ export const AutoComplete = ({ id, data, onSelect }) => {
     };
 
     return (
-        <AutoCompleteStyle ref={searchContainer}>
+        <AutoCompleteStyle ref={searchContainer} id={id}>
             <SearchBarStyle onClick={showSuggestion}>
                 <SearchInputStyle
                     type='text'
@@ -87,15 +87,15 @@ export const AutoComplete = ({ id, data, onSelect }) => {
             <SearchResultStyle isVisible={isVisible}>
                 <ListGroupStyle ref={searchResultRef}>
                     {suggestions.map((item, index) => (
-                        <RowStyle key={item.name}>
+                        <RowStyle key={item}>
                             <AutoCompleteItem
                                 onSelectItem={() => {
                                     hideSuggestion();
-                                    setSearch(item.name);
+                                    setSearch(item);
                                     onSelect(item);
                                 }}
                                 isHighlighted={cursor === index}
-                                {...item}
+                                name={item}
                             />
                             {index < suggestions.length - 1 && <SeparatorStyle />}
                         </RowStyle>
@@ -107,16 +107,14 @@ export const AutoComplete = ({ id, data, onSelect }) => {
 };
 
 const AutoCompleteStyle = styled.div`
-    width: 20%;
-    height: 100%;
-    margin: 200px 300px;
+    width: 100%;
 `;
 
 const SearchBarStyle = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    background: transparent;
+    /* background: transparent; */
     padding: 0.5rem;
     &:focus {
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -126,7 +124,9 @@ const SearchBarStyle = styled.div`
 const SearchInputStyle = styled.input`
     border: none;
     font-size: 1.5rem;
+    padding-left: 0.5rem;
     height: 100%;
+    width: 90%;
     &:focus {
         outline: none;
     }
@@ -134,11 +134,13 @@ const SearchInputStyle = styled.input`
 
 const SearchResultStyle = styled.div`
     width: 100%;
+    position: absolute;
     max-height: 25rem;
+    background-color: #fff;
     overflow-y: auto;
     padding-inline: 0.5rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.28);
-    visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
+    display: ${({ isVisible }) => (isVisible ? 'inline-block' : 'none')};
 `;
 
 const ListGroupStyle = styled.ul``;

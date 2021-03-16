@@ -1,2 +1,2 @@
-export { FindFalcone } from './FindFalcone/FindFalcone';
 export { Navbar } from './NavBar/Navbar';
+export { AutoComplete } from './AutoComplete/AutoComplete';

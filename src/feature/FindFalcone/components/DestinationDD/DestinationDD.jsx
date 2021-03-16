@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { DropDown } from '../../../../components/DropDown/DropDown';
+// import { DropDown } from '../../../../components/DropDown/DropDown';
+
+import { AutoComplete } from '../../../../components';
 import { FindFalconeContext } from '../../FindFalcone';
 import { useDispatch, useSelector } from 'react-redux';
 import { getJourneyNameWithIndex } from '../../../../constants/commonConstants';
@@ -28,7 +30,9 @@ export const DestinationDD = React.memo(({ name, journeyIndex }) => {
                 }
             }
 
-        setRemainingDestination(destinationList);
+        // Removing the Null from the list
+        const newDest = destinationList.filter(value => !!value);
+        setRemainingDestination(newDest);
     }, [listOfDestination, planet, destinations, journeyIndex]);
 
     const handleDropdownChange = useCallback(
@@ -47,12 +51,13 @@ export const DestinationDD = React.memo(({ name, journeyIndex }) => {
 
     return (
         remainingDestination.length > 0 && (
-            <DropDown
-                name={name}
-                options={remainingDestination}
-                onChangeHandler={handleDropdownChange}
-                isValid={!isValid && !(planet || {}).name}
-            />
+            // <DropDown
+            //     name={name}
+            //     options={remainingDestination}
+            //     onChangeHandler={handleDropdownChange}
+            //     isValid={!isValid && !(planet || {}).name}
+            // />
+            <AutoComplete id={name} options={remainingDestination} onSelect={handleDropdownChange} />
         )
     );
 });

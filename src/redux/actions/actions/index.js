@@ -7,3 +7,4 @@ export {
     getFindFalconeSuccessAction,
     getResetFindFalconeAction
 } from './findFalconeActions';
+export { getJourneyVehicleAction } from './journeyActions';

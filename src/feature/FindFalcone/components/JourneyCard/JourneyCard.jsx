@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { DestinationDD } from '../DestinationDD/DestinationDD';
 import { VehicleList } from '../Vehicle/VehicleList';
-import { H4, JourneyCardView } from '../../../views';
+import { H4, JourneyCardView } from '../../../../views';
 import { useSelector } from 'react-redux';
-import { getJourneyNameWithIndex } from '../../../constants/commonConstants';
+import { getJourneyNameWithIndex } from '../../../../constants/commonConstants';
 
 export const JourneyCard = React.memo(({ index, isValid }) => {
     const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(index)]);

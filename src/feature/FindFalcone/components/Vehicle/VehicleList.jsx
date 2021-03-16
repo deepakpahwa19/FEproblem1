@@ -2,11 +2,11 @@ import React, { useCallback, useContext, useState, useEffect, useRef } from 'rea
 import { useDispatch, useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
-import { RadioButtonView } from '../../../views';
-import { FindFalconeContext } from '../FindFalcone';
-import { getJourneyNameWithIndex } from '../../../constants/commonConstants';
-import { getJourneyVehicleAction } from '../../../redux/actions/actions/journeyActions';
-import { RequiredElement } from '../../../views';
+import { RadioButtonView } from '../../../../views';
+import { FindFalconeContext } from '../../FindFalcone';
+import { getJourneyNameWithIndex } from '../../../../constants/commonConstants';
+import { getJourneyVehicleAction } from '../../../../redux/actions/actions';
+import { RequiredElement } from '../../../../views';
 
 export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) => {
     const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]);

@@ -55,6 +55,7 @@ export const AutoComplete = ({ id, options, onSelect }) => {
     const hideSuggestion = () => setVisible(false);
 
     const keyboardNavigation = e => {
+        console.log(e.key);
         if (e.key === 'ArrowDown') {
             isVisible ? setCursor(c => (c < suggestions.length - 1 ? c + 1 : 0)) : showSuggestion();
         } else if (e.key === 'ArrowUp') {
@@ -65,6 +66,11 @@ export const AutoComplete = ({ id, options, onSelect }) => {
             setSearch(suggestions[cursor]);
             hideSuggestion();
             onSelect(suggestions[cursor]);
+        } else if (e.key === 'Backspace' || e.key === 'Delete') {
+            console.log('Inside Backspace');
+            setSearch('');
+            hideSuggestion();
+            onSelect('');
         } else {
             showSuggestion();
         }
@@ -108,10 +114,12 @@ export const AutoComplete = ({ id, options, onSelect }) => {
 
 const AutoCompleteStyle = styled.div`
     width: 100%;
+    /* z-index: 1000000; */
 `;
 
 const SearchBarStyle = styled.div`
     display: flex;
+    width: 200px;
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     /* background: transparent; */
@@ -133,14 +141,15 @@ const SearchInputStyle = styled.input`
 `;
 
 const SearchResultStyle = styled.div`
-    width: 100%;
-    position: absolute;
+    width: 200px;
+    position: fixed;
     max-height: 25rem;
+    z-index: 1300;
     background-color: #fff;
     overflow-y: auto;
     padding-inline: 0.5rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.28);
-    display: ${({ isVisible }) => (isVisible ? 'inline-block' : 'none')};
+    visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
 `;
 
 const ListGroupStyle = styled.ul``;

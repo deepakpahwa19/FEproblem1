@@ -51,13 +51,12 @@ export const DestinationDD = React.memo(({ name, journeyIndex }) => {
 
     return (
         remainingDestination.length > 0 && (
-            // <DropDown
-            //     name={name}
-            //     options={remainingDestination}
-            //     onChangeHandler={handleDropdownChange}
-            //     isValid={!isValid && !(planet || {}).name}
-            // />
-            <AutoComplete id={name} options={remainingDestination} onSelect={handleDropdownChange} />
+            <AutoComplete
+                id={name}
+                options={remainingDestination}
+                onSelect={handleDropdownChange}
+                isValid={!isValid && !(planet || {}).name}
+            />
         )
     );
 });

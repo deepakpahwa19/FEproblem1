@@ -2,8 +2,9 @@ import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react'
 import { AutoCompleteItem } from './AutoCompleteItem';
 import { FaSortDown, FaSortUp } from 'react-icons/fa';
 import styled from 'styled-components';
+import { RequiredElement } from '../../views';
 
-export const AutoComplete = ({ id, options, onSelect }) => {
+export const AutoComplete = ({ id, options, onSelect, isValid }) => {
     const [isVisible, setVisible] = useState(false);
     const [search, setSearch] = useState('');
     const [cursor, setCursor] = useState(-1);
@@ -76,6 +77,7 @@ export const AutoComplete = ({ id, options, onSelect }) => {
 
     return (
         <AutoCompleteStyle ref={searchContainer} id={id}>
+            {isValid && <RequiredElement />}
             <SearchBarStyle onClick={showSuggestion}>
                 <SearchInputStyle
                     type='text'
@@ -117,7 +119,7 @@ const AutoCompleteStyle = styled.div`
 
 const SearchBarStyle = styled.div`
     display: flex;
-    width: 200px;
+    width: 100%;
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     /* background: transparent; */
@@ -139,8 +141,7 @@ const SearchInputStyle = styled.input`
 `;
 
 const SearchResultStyle = styled.div`
-    width: 200px;
-    position: fixed;
+    width: 100%;
     max-height: 25rem;
     z-index: 1300;
     background-color: #fff;

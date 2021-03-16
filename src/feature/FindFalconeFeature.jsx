@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector, batch } from 'react-redux';
+import { Spinner } from '../components';
 import { getDestinationsAction } from '../redux/actions/actions/destinationActions';
 import { getVehiclesAction } from '../redux/actions/actions/vehicleActions';
 import { FindFalcone } from './FindFalcone/FindFalcone';
@@ -17,8 +18,9 @@ export const FindFalconeFeature = React.memo(() => {
         });
     }, [dispatch]);
 
-    if (isVehiclesLoading || isDestinationLoading) return <h4>Loading...</h4>;
+    if (isVehiclesLoading || isDestinationLoading) return <Spinner />;
 
     return <FindFalcone destinations={destinations} vehicles={vehicles} />;
+    // return <Spinner />;
 });
 FindFalconeFeature.propTypes = {};

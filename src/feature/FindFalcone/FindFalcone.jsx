@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFindFalconeAction } from '../../redux/actions/actions';
 import { ErrorMessage } from '../../views/CommonUI/ErrorMessage';
 import { RedirectToResult } from '../../routes/routes';
+import { Spinner } from '../../components/';
 
 export const FindFalconeContext = React.createContext();
 
@@ -20,7 +21,7 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
     const [selectedDestinations, setSelectedDestinations] = useState(() => new Array(destinations.length).fill(null));
     const journeys = useSelector(state => state.journey);
     const [isValid, setIsValid] = useState(true);
-    const { errorMessage, falconeFound } = useSelector(state => state.findFalcone);
+    const { errorMessage, falconeFound, isLoading } = useSelector(state => state.findFalcone);
 
     const dispatch = useDispatch();
 
@@ -111,6 +112,10 @@ export const FindFalcone = React.memo(({ destinations, vehicles }) => {
 
     if (falconeFound) {
         return <RedirectToResult />;
+    }
+
+    if (isLoading) {
+        return <Spinner />;
     }
 
     return (

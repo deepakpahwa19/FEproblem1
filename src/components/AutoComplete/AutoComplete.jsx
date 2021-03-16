@@ -55,7 +55,6 @@ export const AutoComplete = ({ id, options, onSelect }) => {
     const hideSuggestion = () => setVisible(false);
 
     const keyboardNavigation = e => {
-        console.log(e.key);
         if (e.key === 'ArrowDown') {
             isVisible ? setCursor(c => (c < suggestions.length - 1 ? c + 1 : 0)) : showSuggestion();
         } else if (e.key === 'ArrowUp') {
@@ -67,7 +66,6 @@ export const AutoComplete = ({ id, options, onSelect }) => {
             hideSuggestion();
             onSelect(suggestions[cursor]);
         } else if (e.key === 'Backspace' || e.key === 'Delete') {
-            console.log('Inside Backspace');
             setSearch('');
             hideSuggestion();
             onSelect('');

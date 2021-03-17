@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useState, useEffect, useRef } from 'rea
 import { useDispatch, useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
-import { RadioButtonView } from '../../../../views';
+import { RadioButton } from '../../../../views';
 import { FindFalconeContext } from '../../FindFalconeFeature';
 import { getJourneyNameWithIndex } from '../../constants/constants';
 import { getJourneyVehicleAction } from '../../state/actions/actions';
@@ -65,7 +65,7 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
         <>
             {!isValid && !(vehicle || {}).name && <RequiredElement />}
             {remainingVehicles.map((currentVehicle, index) => (
-                <RadioButtonView
+                <RadioButton
                     name={name}
                     value={currentVehicle.name}
                     key={`${name}-${currentVehicle.name}`}

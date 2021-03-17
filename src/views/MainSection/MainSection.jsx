@@ -4,13 +4,13 @@ import { Routes } from '../../routes/routes';
 
 export const MainSection = React.memo(({ children }) => {
     return (
-        <MainSectionUI>
+        <MainSectionStyle>
             <Routes />
-        </MainSectionUI>
+        </MainSectionStyle>
     );
 });
 
-const MainSectionUI = styled.main`
+const MainSectionStyle = styled.main`
     height: calc(100vh - 10rem);
     width: 100vw;
     overflow-y: auto;

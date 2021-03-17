@@ -1,9 +1,5 @@
 import { all } from 'redux-saga/effects';
-import destinationWatcherSaga from './destinationSaga';
-import findFalconeWatcherSaga from './findFalconeSaga';
-import tokenWatcherSaga from './tokenSaga';
-import vehicleWatcherSaga from './vehicleSaga';
-
+import { vehicleWatcherSaga, destinationWatcherSaga, findFalconeWatcherSaga } from '../../feature/FindFalcone';
 export default function* rootSaga() {
-    yield all([vehicleWatcherSaga(), destinationWatcherSaga(), tokenWatcherSaga(), findFalconeWatcherSaga()]);
+    yield all([vehicleWatcherSaga(), destinationWatcherSaga(), findFalconeWatcherSaga()]);
 }

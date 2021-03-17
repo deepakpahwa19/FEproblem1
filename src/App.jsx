@@ -10,7 +10,6 @@ function App() {
     return (
         <>
             <GlobalStyles />
-            {/* <DestinationAutoComplete /> */}
             <Navbar />
             <MainSection></MainSection>
             <Footer justifyContent='center'>

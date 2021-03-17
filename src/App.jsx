@@ -1,4 +1,3 @@
-import './App.css';
 import GlobalStyles from './styles/globalStyles';
 import { Navbar } from './components/';
 import { Footer } from './components/Footer/Footer';

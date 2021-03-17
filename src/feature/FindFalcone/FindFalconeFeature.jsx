@@ -21,5 +21,6 @@ export const FindFalconeFeature = () => {
     if (isVehiclesLoading || isDestinationLoading) return <Spinner />;
 
     return <FindFalcone destinations={destinations} vehicles={vehicles} />;
+    // return <Spinner />;
 };
 FindFalconeFeature.propTypes = {};

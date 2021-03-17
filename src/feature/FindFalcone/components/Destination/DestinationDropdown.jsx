@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AutoComplete } from '../../../../components';
+import { AutoComplete } from '../../../../views';
 // import { FindFalconeContext } from '../FindFalcone/FindFalcone';
 
 import { FindFalconeContext } from '../../FindFalconeFeature';

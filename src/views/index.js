@@ -1,10 +1,12 @@
 export { DropDownView } from './DropdownView/DropDownView';
 export { RadioButtonView } from './RadioButtonView/RadioButtonView';
 export { FlexContainer } from './StyledComponents/FlexContainer';
-export { JourneyCardView } from './JourneyCardView/JourneyCardView';
+export { JourneyCardView } from './features/FindFalcone/JourneyCardView/JourneyCardView';
 export { H1, H4, H3, RequiredElement } from './CommonUI';
 export { FooterView } from './Footer/Footer';
 export { Spinner } from './SpinnerView/Spinner';
 export { Button } from './CommonUI/ButtonView';
 export { ErrorMessage } from './CommonUI/ErrorMessage';
 export { Backdrop } from './Backdrop/Backdrop';
+export { AutoComplete } from './AutoComplete/AutoComplete';
+export { AutoCompleteItem } from './AutoComplete/AutoCompleteItem';

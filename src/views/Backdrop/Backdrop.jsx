@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export const Backdrop = ({ show = true }) => {
     return show ? <BackdropStyle /> : null;
+};
+
+Backdrop.propTypes = {
+    show: PropTypes.bool
 };
 
 const BackdropStyle = styled.div`

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export const FooterView = React.memo(({ children, justifyContent, alignItems }) => {
     return (
@@ -10,6 +11,11 @@ export const FooterView = React.memo(({ children, justifyContent, alignItems }) 
         </FooterUI>
     );
 });
+
+FooterView.propTypes = {
+    justifyContent: PropTypes.string,
+    alignItems: PropTypes.string
+};
 
 const FooterUI = styled.footer`
     position: fixed;

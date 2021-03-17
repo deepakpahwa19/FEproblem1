@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Route } from 'react-router-dom';
 import { FaTimes, FaBars } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
 import {
@@ -10,16 +9,13 @@ import {
     MobileIcon,
     NavMenu,
     NavItem,
-    NavLinks,
-    NavBtnLink,
-    NavItemBtn
+    NavLinks
 } from '../../views/NavBarView/NavbarView';
-import { Button } from '../../styles/globalStyles';
 
 export const Navbar = () => {
     const [click, setClick] = useState(false);
 
-    const [button, setButton] = useState(true);
+    const [, setButton] = useState(true);
 
     const handleClick = () => setClick(!click);
 
@@ -55,22 +51,11 @@ export const Navbar = () => {
                         <NavItem>
                             <NavLinks to='/products'>Products</NavLinks>
                         </NavItem>
-                        {/* <NavItemBtn>
-                            {button ? (
-                                <NavBtnLink to='/sign-up'>
-                                    <Button primary>SIGN UP</Button>
-                                </NavBtnLink>
-                            ) : (
-                                <NavBtnLink to='/sign-up'>
-                                    <Button fontBig primary>
-                                        SIGN UP
-                                    </Button>
-                                </NavBtnLink>
-                            )}
-                        </NavItemBtn> */}
                     </NavMenu>
                 </NavbarContainer>
             </Nav>
         </IconContext.Provider>
     );
 };
+
+Navbar.propTypes = {};

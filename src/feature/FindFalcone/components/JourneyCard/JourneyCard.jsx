@@ -14,7 +14,7 @@ export const JourneyCard = React.memo(({ index, isValid }) => {
     }, [planet, vehicle, isValid]);
 
     return (
-        <JourneyCardView isValid={isJourneyNotValid}>
+        <JourneyCardView isValid={!isJourneyNotValid}>
             <H4>Destination {index + 1}</H4>
             <DestinationDropdown name={`destination-${index}`} journeyIndex={index} />
             <VehicleList key={`vehicle-${index}`} name={`vehicle-${index}`} journeyIndex={index} />
@@ -23,5 +23,6 @@ export const JourneyCard = React.memo(({ index, isValid }) => {
 });
 
 JourneyCard.propTypes = {
-    index: PropTypes.number
+    index: PropTypes.number,
+    isValid: PropTypes.bool
 };

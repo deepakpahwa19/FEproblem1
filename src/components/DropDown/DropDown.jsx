@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { DropDownView } from '../../views';
+import PropTypes from 'prop-types';
 
-export const DropDown = React.memo(({ name, options, onChangeHandler, isValid }) => {
+export const DropDown = ({ name, options, onChangeHandler, isValid }) => {
     const [value, setValue] = useState('');
 
     const handleChange = useCallback(
@@ -13,8 +14,6 @@ export const DropDown = React.memo(({ name, options, onChangeHandler, isValid })
         [onChangeHandler]
     );
 
-    // console.log(`Inside dropdown => ${name}`, value, options);
-
     return (
         <DropDownView
             name={name}
@@ -25,4 +24,11 @@ export const DropDown = React.memo(({ name, options, onChangeHandler, isValid })
             isValid={isValid}
         />
     );
-});
+};
+
+DropDown.propTypes = {
+    name: PropTypes.string,
+    options: PropTypes.array,
+    onChangeHandler: PropTypes.func,
+    isValid: PropTypes.bool
+};

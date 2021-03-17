@@ -8,7 +8,7 @@ import { getJourneyNameWithIndex } from '../../constants/constants';
 import { getJourneyVehicleAction } from '../../state/actions/actions';
 import { RequiredElement } from '../../../../views';
 
-export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) => {
+export const VehicleList = ({ name, journeyIndex }) => {
     const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]) || {};
     const dispatch = useDispatch();
 
@@ -77,9 +77,9 @@ export const VehicleList = React.memo(({ name, planetDistance, journeyIndex }) =
             ))}
         </>
     );
-});
+};
 
 VehicleList.propTypes = {
     name: PropTypes.string,
-    planetDistance: PropTypes.number
+    journeyIndex: PropTypes.number
 };

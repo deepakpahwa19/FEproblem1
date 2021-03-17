@@ -1,11 +1,15 @@
 import React from 'react';
 
 import styled from 'styled-components';
-// import { Button } from '../../styles/globalStyles';
+import PropTypes from 'prop-types';
 
 export const Button = React.memo(({ children, onClick }) => {
     return <ButtonUI onClick={onClick}>{children}</ButtonUI>;
 });
+
+Button.propTypes = {
+    onClick: PropTypes.func
+};
 
 export const ButtonUI = styled.button`
     border-radius: 4px;

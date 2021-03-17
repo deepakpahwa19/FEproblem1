@@ -1,8 +1,10 @@
 import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
-import { AutoCompleteItem } from './AutoCompleteItem';
 import { FaSortDown, FaSortUp } from 'react-icons/fa';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 import { RequiredElement } from '../../views';
+import { AutoCompleteItem } from './AutoCompleteItem';
 
 export const AutoComplete = ({ id, options, onSelect, isValid }) => {
     const [isVisible, setVisible] = useState(false);
@@ -110,6 +112,13 @@ export const AutoComplete = ({ id, options, onSelect, isValid }) => {
             </SearchResultStyle>
         </AutoCompleteStyle>
     );
+};
+
+AutoComplete.propTypes = {
+    id: PropTypes.string,
+    options: PropTypes.array,
+    onSelect: PropTypes.func,
+    isValid: PropTypes.bool
 };
 
 const AutoCompleteStyle = styled.div`

@@ -25,7 +25,8 @@ DropDown.propTypes = {
     name: PropTypes.string,
     value: PropTypes.any,
     options: PropTypes.array,
-    onChangeHandler: PropTypes.func
+    onChangeHandler: PropTypes.func,
+    isValid: PropTypes.bool
 };
 
 const Select = styled.select`

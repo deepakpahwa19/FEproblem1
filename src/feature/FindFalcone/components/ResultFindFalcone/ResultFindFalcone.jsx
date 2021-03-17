@@ -41,3 +41,5 @@ export const ResultFindFalcone = () => {
         </FlexContainer>
     );
 };
+
+ResultFindFalcone.propTypes = {};

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector, batch } from 'react-redux';
-import { Spinner } from '../components';
+import { Spinner } from '../views/';
 import { getDestinationsAction } from '../redux/actions/actions/destinationActions';
 import { getVehiclesAction } from '../redux/actions/actions/vehicleActions';
 import { FindFalcone } from './FindFalcone/FindFalcone';

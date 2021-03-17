@@ -1,13 +1,10 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FlexContainer, H4, H1, H3 } from '../../views';
 import { JourneyCard } from './components/JourneyCard/JourneyCard';
-import { Button } from '../../views/CommonUI/ButtonView';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFindFalconeAction } from '../../redux/actions/actions';
-import { ErrorMessage } from '../../views/CommonUI/ErrorMessage';
 import { RedirectToResult } from '../../routes/routes';
-import { Spinner } from '../../components/';
+import { Spinner, Button, ErrorMessage, FlexContainer, H4, H1, H3 } from '../../views';
 
 export const FindFalconeContext = React.createContext();
 

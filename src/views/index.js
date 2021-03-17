@@ -4,3 +4,7 @@ export { FlexContainer } from './StyledComponents/FlexContainer';
 export { JourneyCardView } from './JourneyCardView/JourneyCardView';
 export { H1, H4, H3, RequiredElement } from './CommonUI';
 export { FooterView } from './Footer/Footer';
+export { Spinner } from './SpinnerView/Spinner';
+export { Button } from './CommonUI/ButtonView';
+export { ErrorMessage } from './CommonUI/ErrorMessage';
+export { Backdrop } from './Backdrop/Backdrop';

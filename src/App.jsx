@@ -12,10 +12,7 @@ function App() {
             <Navbar />
             <MainSection></MainSection>
             <Footer justifyContent='center'>
-                <AnchorView
-                    href='https://www.geektrust.in/coding-problem/frontend/space'
-                    anchorName='Coding problem - GeekTrust.in'
-                />
+                <AnchorView href='' anchorName='Coding problem - ManMade' />
             </Footer>
         </>
     );

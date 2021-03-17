@@ -26,7 +26,7 @@ export const ResultFindFalcone = () => {
             </>
         );
     } else {
-        content = <H4>You've failed King Shan. Only GeekTrust can save you</H4>;
+        content = <H4>You've failed King Shan. Only God can save you</H4>;
     }
 
     return (

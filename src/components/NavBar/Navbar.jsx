@@ -38,7 +38,7 @@ export const Navbar = () => {
                 <NavbarContainer>
                     <NavLogo to='/'>
                         <NavIcon />
-                        GeekTrust
+                        Find Queen
                     </NavLogo>
                     <MobileIcon onClick={handleClick}>{click ? <FaTimes /> : <FaBars />}</MobileIcon>
                     <NavMenu onClick={handleClick} click={click}>

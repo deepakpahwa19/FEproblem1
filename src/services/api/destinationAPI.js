@@ -1,11 +1,11 @@
 import { STATUS } from '../../constants/commonConstants';
 import axiosFalcone from '../axios/axiosFalcone';
-import { END_POINTS, errorObject } from './apiUtil';
+import { errorObject } from './apiUtil';
 import { API_ERRORS } from '../../constants/commonConstants';
 
 export const getDestinationsAPI = () => {
     return axiosFalcone
-        .get(END_POINTS.getPlanets())
+        .get('planet')
         .then(response => {
             return { status: STATUS.SUCCESS, destinations: response.data, statusCode: response.status };
         })

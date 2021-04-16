@@ -16,7 +16,6 @@ export const DropDown = ({ name, options, onChangeHandler, isValid }) => {
 
     return (
         <>
-            <h1>Testing Jest</h1>
             <DropDownView
                 name={name}
                 id={name}

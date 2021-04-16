@@ -1,4 +1,4 @@
-export { DropDown } from './Dropdown/DropDown';
+export { DropDownView } from './Dropdown/DropDownView';
 export { RadioButton } from './RadioButton/RadioButton';
 export { FlexContainer } from './Containers/FlexContainer';
 export { JourneyCardView } from './features/FindFalcone/JourneyCardView/JourneyCardView';

@@ -1,12 +1,25 @@
 export { DropDownView } from './Dropdown/DropDownView';
 export { RadioButton } from './RadioButton/RadioButton';
-export { FlexContainer } from './Containers/FlexContainer';
+export { FlexContainer } from './Containers/FlexContainer.element';
 export { JourneyCardView } from './features/FindFalcone/JourneyCardView/JourneyCardView';
-export { H1, H4, H3, RequiredElement } from './CommonUI';
-export { FooterView } from './Footer/Footer';
+export { H1, H4, H3 } from './HeaderGroup/HeaderGroup';
+export { RequiredElement } from './RequiredElement/RequiredElement';
+export { FooterView } from './Footer/FooterView';
 export { Spinner } from './SpinnerView/Spinner';
-export { Button } from './CommonUI/Button';
-export { ErrorMessage } from './CommonUI/ErrorMessage';
+export { Button } from './Button/Button';
+export { ErrorMessage } from './ErrorMessage/ErrorMessage';
 export { Backdrop } from './Backdrop/Backdrop';
 export { AutoComplete } from './AutoComplete/AutoComplete';
 export { AutoCompleteItem } from './AutoComplete/AutoCompleteItem';
+export { AnchorView } from './Anchor/AnchorView';
+export { MainSectionStyle } from './MainSection/MainSection.element';
+export {
+    Nav,
+    NavbarContainer,
+    NavIcon,
+    NavLogo,
+    MobileIcon,
+    NavMenu,
+    NavItem,
+    NavLinks
+} from './NavBarView/Navbar.element';

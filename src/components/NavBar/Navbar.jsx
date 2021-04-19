@@ -1,16 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaTimes, FaBars } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
-import {
-    Nav,
-    NavbarContainer,
-    NavIcon,
-    NavLogo,
-    MobileIcon,
-    NavMenu,
-    NavItem,
-    NavLinks
-} from '../../views/NavBarView/NavbarView';
+import { Nav, NavbarContainer, NavIcon, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks } from '../../views';
 
 export const Navbar = () => {
     const [click, setClick] = useState(false);

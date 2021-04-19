@@ -123,7 +123,6 @@ AutoComplete.propTypes = {
 
 const AutoCompleteStyle = styled.div`
     width: 100%;
-    /* z-index: 1000000; */
 `;
 
 const SearchBarStyle = styled.div`

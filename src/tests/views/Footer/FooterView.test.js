@@ -1,20 +1,14 @@
-import { mount } from 'enzyme';
-import { FooterView } from './FooterView';
+import { shallow } from 'enzyme';
+import { FooterView } from '../../../views';
 
 describe('FooterView ', () => {
-    let wrapper = null;
-
     it('rendering FooterView children', () => {
         const text = 'Testing FooterView children';
-        wrapper = mount(
+        const wrapper = shallow(
             <FooterView>
                 <p>{text}</p>
             </FooterView>
         );
         expect(wrapper.find('p').text()).toBe(text);
-    });
-
-    afterEach(() => {
-        wrapper && wrapper.unmount();
     });
 });

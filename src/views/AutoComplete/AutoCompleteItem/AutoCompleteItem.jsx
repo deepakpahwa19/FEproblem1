@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const AutoCompleteItem = ({ name, capital, region, flag, onSelectItem, isHighlighted }) => {
+export const AutoCompleteItem = ({ name, onSelectItem, isHighlighted }) => {
     return (
         <ListItem onClick={onSelectItem} active={isHighlighted}>
             <p>{name}</p>

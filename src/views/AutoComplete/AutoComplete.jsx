@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { RequiredElement } from '../../views';
-import { AutoCompleteItem } from './AutoCompleteItem';
+import { AutoCompleteItem } from './AutoCompleteItem/AutoCompleteItem';
 
 export const AutoComplete = ({ id, options, onSelect, isValid }) => {
     const [isVisible, setVisible] = useState(false);

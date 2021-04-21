@@ -1,5 +1,5 @@
 import { mount } from 'enzyme';
-import { DropDownView } from './DropDownView';
+import { DropDownView } from '../../../views';
 
 describe('DropdownView ', () => {
     let selectedOption = '';
@@ -17,11 +17,13 @@ describe('DropdownView ', () => {
     it('Failed validation display required message', () => {
         wrapper = mount(<DropDownView {...props} />);
         expect(wrapper.find('p').text()).toBe('*required');
+        expect(wrapper).toMatchSnapshot();
     });
 
     it('Success validation does not display required message', () => {
         wrapper = mount(<DropDownView {...props} isValid={false} />);
         expect(wrapper.find('p')).toEqual({});
+        expect(wrapper).toMatchSnapshot();
     });
 
     afterEach(() => {

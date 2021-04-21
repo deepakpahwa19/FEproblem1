@@ -1,15 +1,17 @@
-import { mount, shallow } from 'enzyme';
-import { AnchorView } from './AnchorView';
+import { shallow } from 'enzyme';
+import { AnchorView } from '../../../views';
 
 describe('verifying Anchor in Views', () => {
     let anchorName = 'testing anchor';
     it('verifying Anchor text', () => {
         const wrapper = shallow(<AnchorView anchorName={anchorName} />);
         expect(wrapper.text()).toEqual(anchorName);
+        expect(wrapper).toMatchSnapshot();
     });
 
     it('hide backdrop', () => {
-        const wrapper = mount(<AnchorView anchorName='' />);
+        const wrapper = shallow(<AnchorView anchorName='' />);
         expect(wrapper.text()).toEqual('');
+        expect(wrapper).toMatchSnapshot();
     });
 });

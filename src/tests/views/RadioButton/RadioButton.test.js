@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import { RadioButton } from './RadioButton';
+import { RadioButton } from '../../../views';
 
 describe('RadioButton ', () => {
     let wrapper = null;
@@ -22,6 +22,7 @@ describe('RadioButton ', () => {
         expect(value).toBe(props.value);
         expect(checked).toBe(false);
         expect(disabled).toBe(false);
+        expect(wrapper).toMatchSnapshot();
     });
 
     it('verifying RadioButton checked and disabled', () => {
@@ -33,5 +34,6 @@ describe('RadioButton ', () => {
         expect(value).toBe(props.value);
         expect(checked).toBe(true);
         expect(disabled).toBe(true);
+        expect(wrapper).toMatchSnapshot();
     });
 });

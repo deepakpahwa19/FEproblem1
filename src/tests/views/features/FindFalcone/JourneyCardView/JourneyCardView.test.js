@@ -1,20 +1,15 @@
-import { mount } from 'enzyme';
-import { JourneyCardView } from './JourneyCardView';
+import { shallow } from 'enzyme';
+import { JourneyCardView } from '../../../views';
 
 describe('JourneyCardView ', () => {
-    let wrapper = null;
-
     it('rendering JourneyCardView children', () => {
         const text = 'Testing JourneyCardView children';
-        wrapper = mount(
+        const wrapper = shallow(
             <JourneyCardView>
                 <p>{text}</p>
             </JourneyCardView>
         );
         expect(wrapper.find('p').text()).toBe(text);
-    });
-
-    afterEach(() => {
-        wrapper && wrapper.unmount();
+        expect(wrapper).toMatchSnapshot();
     });
 });

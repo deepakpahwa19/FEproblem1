@@ -10,7 +10,7 @@ export { Button } from './Button/Button';
 export { ErrorMessage } from './ErrorMessage/ErrorMessage';
 export { Backdrop } from './Backdrop/Backdrop';
 export { AutoComplete } from './AutoComplete/AutoComplete';
-export { AutoCompleteItem } from './AutoComplete/AutoCompleteItem';
+export { AutoCompleteItem } from './AutoComplete/AutoCompleteItem/AutoCompleteItem';
 export { AnchorView } from './Anchor/AnchorView';
 export { MainSectionStyle } from './MainSection/MainSection.element';
 export {

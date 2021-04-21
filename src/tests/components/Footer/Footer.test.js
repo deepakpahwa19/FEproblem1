@@ -11,6 +11,6 @@ describe('Verifying Footer component', () => {
             </Footer>
         );
         expect(wrapper.find('footer')).toBeTruthy();
-        expect(wrapper.find('h1').text()).toBe(h1Content);
+        expect(wrapper.find('h1').text()).toEqual(h1Content);
     });
 });

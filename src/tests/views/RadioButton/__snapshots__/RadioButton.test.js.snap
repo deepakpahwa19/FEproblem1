@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioButton  verifying RadioButton checked and disabled 1`] = `ShallowWrapper {}`;
+
+exports[`RadioButton  verifying RadioButton default behaviour 1`] = `ShallowWrapper {}`;

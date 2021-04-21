@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AutoComplete } from '../../../../views';
-// import { FindFalconeContext } from '../FindFalcone/FindFalcone';
-
 import { FindFalconeContext } from '../../FindFalconeFeature';
-
 import { getJourneyNameWithIndex } from '../../constants/constants';
 import { getJourneyDestinationAction } from '../../state/actions/actions/journeyActions';
 

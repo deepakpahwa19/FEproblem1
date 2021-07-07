@@ -9,7 +9,7 @@ import { getJourneyDestinationAction } from '../../state/actions/actions/journey
 
 export const DestinationDropdown = ({ name, journeyIndex }) => {
     const [remainingDestination, setRemainingDestination] = useState([]);
-    const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]) || {};
+    const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]);
     const dispatch = useDispatch();
 
     const { listOfDestination, updateDestinations, destinations, updateVehicles, isValid } = useContext(

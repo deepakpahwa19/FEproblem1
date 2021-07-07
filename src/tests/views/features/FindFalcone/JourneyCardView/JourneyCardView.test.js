@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import { JourneyCardView } from '../../../views';
+import { JourneyCardView } from '../../../../../views';
 
 describe('JourneyCardView ', () => {
     it('rendering JourneyCardView children', () => {

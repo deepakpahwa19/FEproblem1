@@ -28,12 +28,12 @@ export const AutoComplete = ({ id, options, onSelect, isValid }) => {
         };
     }, [handleClickOutside]);
 
-    const scrollIntoView = position => {
+    const scrollIntoView = useCallback(position => {
         searchResultRef.current.parentNode.scrollTo({
             top: position,
             behavior: 'smooth'
         });
-    };
+    }, []);
 
     const suggestions = useMemo(() => {
         if (!search) return options;
@@ -42,7 +42,7 @@ export const AutoComplete = ({ id, options, onSelect, isValid }) => {
         scrollIntoView(0);
 
         return options.filter(item => item.toLowerCase().includes(search.toLowerCase()));
-    }, [options, search]);
+    }, [options, search, scrollIntoView]);
 
     useEffect(() => {
         if (cursor < 0 || cursor > suggestions.length || !searchResultRef) {
@@ -51,7 +51,7 @@ export const AutoComplete = ({ id, options, onSelect, isValid }) => {
 
         let listItems = Array.from(searchResultRef.current.children);
         listItems[cursor] && scrollIntoView(listItems[cursor].offsetTop);
-    }, [cursor, suggestions]);
+    }, [cursor, suggestions, scrollIntoView]);
 
     const showSuggestion = () => setVisible(true);
 

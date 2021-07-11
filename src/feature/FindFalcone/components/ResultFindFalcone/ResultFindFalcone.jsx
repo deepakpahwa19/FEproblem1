@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector, batch } from 'react-redux';
-import { FlexContainer, H1, H4 } from '../../../../views';
+import { FlexContainer } from '../../../../views';
 import { Button } from '../../../../views';
 import { NavLink } from 'react-router-dom';
 import { getResetFindFalconeAction, getResetJourneyAction } from '../../state/actions/actions/';
@@ -20,18 +20,18 @@ export const ResultFindFalcone = () => {
     if (!!planetName) {
         content = (
             <>
-                <H4>Success! Congratulations on Finding Falcone. King Shan is mighty pleased.</H4>
-                <H4>Time taken: {timeTaken}</H4>
-                <H4>Planet found: {planetName}</H4>
+                <h4>Success! Congratulations on Finding Falcone. King Shan is mighty pleased.</h4>
+                <h4>Time taken: {timeTaken}</h4>
+                <h4>Planet found: {planetName}</h4>
             </>
         );
     } else {
-        content = <H4>You've failed King Shan. Only God can save you</H4>;
+        content = <h4>You've failed King Shan. Only God can save you</h4>;
     }
 
     return (
         <FlexContainer direction='column'>
-            <H1>Finding Falcone!</H1>
+            <h1>Finding Falcone!</h1>
             <FlexContainer direction='column' margin='40px auto'>
                 {content}
                 <NavLink to='/findFalcone' style={{ margin: 'auto' }}>

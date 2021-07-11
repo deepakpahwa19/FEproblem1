@@ -2,7 +2,6 @@ export { DropDownView } from './Dropdown/DropDownView';
 export { RadioButton } from './RadioButton/RadioButton';
 export { FlexContainer } from './Containers/FlexContainer.element';
 export { JourneyCardView } from './features/FindFalcone/JourneyCardView/JourneyCardView';
-export { H1, H4, H3 } from './HeaderGroup/HeaderGroup';
 export { RequiredElement } from './RequiredElement/RequiredElement';
 export { FooterView } from './Footer/FooterView';
 export { Spinner } from './SpinnerView/Spinner';

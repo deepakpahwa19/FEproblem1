@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { DestinationDropdown } from '../Destination/DestinationDropdown';
 import { VehicleList } from '../Vehicle/VehicleList';
-import { H4, JourneyCardView } from '../../../../views';
+import { JourneyCardView } from '../../../../views';
 import { useSelector } from 'react-redux';
 import { getJourneyNameWithIndex } from '../../constants/constants';
 
@@ -15,7 +15,7 @@ export const JourneyCard = React.memo(({ index, isValid }) => {
 
     return (
         <JourneyCardView isValid={!isJourneyNotValid}>
-            <H4>Destination {index + 1}</H4>
+            <h4>Destination {index + 1}</h4>
             <DestinationDropdown name={`destination-${index}`} journeyIndex={index} />
             <VehicleList key={`vehicle-${index}`} name={`vehicle-${index}`} journeyIndex={index} />
         </JourneyCardView>

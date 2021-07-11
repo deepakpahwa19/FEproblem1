@@ -1,6 +1,6 @@
 import axiosFalcone from '../axios/axiosFalcone';
 import { END_POINTS, errorObject } from './apiUtil';
-import { API_ERRORS, STATUS } from '../../../../constants/constants';
+import { API_ERRORS, STATUS } from '../../constants/constants';
 
 export const getTokenAPI = () => {
     return axiosFalcone

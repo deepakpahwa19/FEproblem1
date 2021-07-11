@@ -1,6 +1,6 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { getDestinationsFailedAction, getDestinationsSuccessAction } from '../actions/actions/destinationActions';
-import { getDestinationsAPI } from '../../services/api';
+import { getDestinationsAPI } from '../../../../services/api';
 import { DESTINATION_ACTION_TYPES } from '../actions/actionTypes';
 import { STATUS } from '../../../../constants/constants';
 

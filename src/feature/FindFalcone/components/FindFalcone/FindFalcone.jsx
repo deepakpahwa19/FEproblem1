@@ -1,23 +1,29 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { JourneyCard } from '../';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFindFalconeAction } from '../../state/actions/actions';
-import { RedirectToResult } from '../../../../routes/routes';
-import { Spinner, Button, ErrorMessage, FlexContainer, H4, H1, H3 } from '../../../../views';
 import { listOfCards } from '../../config/findFalconConfig';
 
 import { FindFalconeContext } from '../../FindFalconeFeature';
 import { useDestinations } from '../../customHooks/useDestinations';
 import { useVehicles } from '../../customHooks/useVehicles';
+import { FindFalconeView } from './FindFalcone.view';
+
+/**
+ * @param {destinations}
+ * @param {vehicles}
+ * @returns
+ */
+
 export const FindFalcone = ({ destinations, vehicles }) => {
     const [listOfDestination, updateDestinations] = useDestinations(destinations);
 
     const [listOfVehicle, updateVehicles] = useVehicles(vehicles);
 
+    const { errorMessage, falconeFound, isLoading } = useSelector(state => state.findFalcone);
+
     const journeys = useSelector(state => state.journey);
     const [isValid, setIsValid] = useState(true);
-    const { errorMessage, falconeFound, isLoading } = useSelector(state => state.findFalcone);
 
     const dispatch = useDispatch();
 
@@ -48,40 +54,26 @@ export const FindFalcone = ({ destinations, vehicles }) => {
         }
     }, [journeys, dispatch, timeTaken]);
 
-    if (falconeFound) {
-        return <RedirectToResult />;
-    }
-
-    if (isLoading) {
-        return <Spinner />;
-    }
-
     return (
-        <>
-            <FlexContainer direction='column'>
-                <H1>Finding Falcone!</H1>
-                <H3>Select planets you want to search in:</H3>
-                {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-                <FlexContainer>
-                    <FindFalconeContext.Provider
-                        value={{
-                            listOfDestination,
-                            updateDestinations,
-                            destinations,
-                            listOfVehicle,
-                            updateVehicles,
-                            isValid
-                        }}
-                    >
-                        {listOfCards.map((card, index) => (
-                            <JourneyCard key={`journey-${index}`} index={index} isValid={isValid} />
-                        ))}
-                    </FindFalconeContext.Provider>
-                </FlexContainer>
-                <H4>Total Time: {timeTaken}</H4>
-                <Button onClick={handleFindFalconeClick}>Find Falcone</Button>
-            </FlexContainer>
-        </>
+        <FindFalconeContext.Provider
+            value={{
+                listOfDestination,
+                updateDestinations,
+                destinations,
+                listOfVehicle,
+                updateVehicles,
+                isValid
+            }}
+        >
+            <FindFalconeView
+                timeTaken={timeTaken}
+                handleFindFalconeClick={handleFindFalconeClick}
+                errorMessage={errorMessage}
+                falconeFound={falconeFound}
+                isLoading={isLoading}
+                isValid={isValid}
+            />
+        </FindFalconeContext.Provider>
     );
 };
 

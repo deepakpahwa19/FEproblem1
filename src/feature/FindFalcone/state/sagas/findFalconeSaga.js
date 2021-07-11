@@ -1,7 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import { FIND_FALCONE_ACTION_TYPES } from '../actions/actionTypes';
 import { STATUS } from '../../../../constants/constants';
-import { getTokenAPI, findFalconeAPI } from '../../services/api';
+import { getTokenAPI, findFalconeAPI } from '../../../../services/api';
 import { getFindFalconeFailedAction, getFindFalconeSuccessAction } from '../actions/actions';
 
 function* findFalconeActionSaga(action) {

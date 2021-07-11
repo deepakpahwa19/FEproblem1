@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { Urls } from '../../../../config/envConfig';
-import { getEnvironmentName } from '../../../../util/commonUtil';
+import { Urls } from '../../config/envConfig';
+import { getEnvironmentName } from '../../util/commonUtil';
 
 const getBaseUrl = () => {
     const envName = getEnvironmentName();

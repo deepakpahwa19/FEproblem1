@@ -1,5 +1,5 @@
-import { FIND, PLANETS, TOKEN, VEHICLES } from '../../constants/constants';
-import { STATUS } from '../../../../constants/constants';
+import { FIND, PLANETS, TOKEN, VEHICLES } from '../../feature/FindFalcone/constants/constants';
+import { STATUS } from '../../constants/constants';
 
 export const errorObject = (statusCode, errorCode = '', errorMessage = '') => ({
     status: STATUS.ERROR,

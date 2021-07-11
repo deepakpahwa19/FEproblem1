@@ -7,6 +7,12 @@ import { FindFalconeContext } from '../../FindFalconeFeature';
 import { getJourneyNameWithIndex } from '../../constants/constants';
 import { getJourneyDestinationAction } from '../../state/actions/actions/journeyActions';
 
+/**
+ * @param {name} name
+ * @param {journeyIndex} journeyIndex
+ * @description An autocomplete dropdown
+ * @returns
+ */
 export const DestinationDropdown = ({ name, journeyIndex }) => {
     const [remainingDestination, setRemainingDestination] = useState([]);
     const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]);

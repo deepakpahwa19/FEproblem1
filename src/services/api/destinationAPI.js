@@ -1,12 +1,12 @@
 import axiosFalcone from '../axios/axiosFalcone';
 import { END_POINTS, errorObject } from './apiUtil';
-import { API_ERRORS, STATUS } from '../../../../constants/constants';
+import { API_ERRORS, STATUS } from '../../constants/constants';
 
-export const getVehiclesAPI = () => {
+export const getDestinationsAPI = () => {
     return axiosFalcone
-        .get(END_POINTS.vehicle)
+        .get(END_POINTS.planets)
         .then(response => {
-            return { status: STATUS.SUCCESS, vehicles: response.data, statusCode: response.status };
+            return { status: STATUS.SUCCESS, destinations: response.data, statusCode: response.status };
         })
         .catch(error => {
             if (error.response) {

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JourneyCardView  rendering JourneyCardView children 1`] = `ShallowWrapper {}`;

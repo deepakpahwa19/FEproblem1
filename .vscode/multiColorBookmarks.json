@@ -1,0 +1,36 @@
+{
+    "/src/feature/FindFalcone/state/sagas/destinationSaga.js": {
+        "16": ["reducer", "Destination", 0, "break;"]
+    },
+    "/src/feature/FindFalcone/components/JourneyCard/JourneyCard.jsx": {
+        "9": [
+            "",
+            "Destination",
+            1,
+            "const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(index)]) || {};"
+        ],
+        "17": ["", "Vehicle", 2, "<H4>Destination {index + 1}</H4>"],
+        "19": [
+            "",
+            "Destination",
+            2,
+            "<VehicleList key={`vehicle-${index}`} name={`vehicle-${index}`} journeyIndex={index} />"
+        ]
+    },
+    "/src/feature/FindFalcone/components/Destination/DestinationDropdown.jsx": {
+        "11": [
+            "dropdown",
+            "Destination",
+            3,
+            "const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]);"
+        ]
+    },
+    "/src/feature/FindFalcone/components/Vehicle/VehicleList.jsx": {
+        "14": ["state", "Activate", 0, "const [remainingVehicles, setRemainingVehicles] = useState([]);"],
+        "30": ["updatingVehicle", "Vehicle", 1, "updateVehicles(prevVehicleName, vehicleName);"]
+    },
+    "/src/views/AutoComplete/AutoComplete.jsx": {
+        "30": ["init", "Interview2", 2, "const scrollIntoView = useCallback(position => {"],
+        "51": ["", "Destination", 1, "let listItems = Array.from(searchResultRef.current.children);"]
+    }
+}

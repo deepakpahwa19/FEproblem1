@@ -1,4 +1,4 @@
-export { destinationReducer } from './destinationReducer';
-export { findFalconeReducer } from './findFalconeReducer';
-export { journeyReducer } from './journeyReducer';
-export { vehicleReducer } from './vehicleReducer';
+export { destinationReducer } from './destination.reducer';
+export { findFalconeReducer } from './findFalcone.reducer';
+export { journeyReducer } from './journey.reducer';
+export { vehicleReducer } from './vehicle.reducer';

@@ -1,4 +1,4 @@
-export { getDestinationsAPI } from './destinationAPI';
-export { getVehiclesAPI } from './vehicleAPI';
-export { getTokenAPI } from './getTokenAPI';
-export { findFalconeAPI } from './findFalconeAPI';
+export { getDestinationsAPI } from './destination.service';
+export { getVehiclesAPI } from './vehicle.service';
+export { getTokenAPI } from './getToken.service';
+export { findFalconeAPI } from './findFalcone.service';

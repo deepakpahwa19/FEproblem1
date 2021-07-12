@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFindFalconeAction } from '../../state/actions/actions';
-import { listOfCards } from '../../config/findFalconConfig';
+import { listOfCards } from '../../config/findFalcon.config';
 
 import { FindFalconeContext } from '../../FindFalconeFeature';
 import { useDestinations } from '../../customHooks/useDestinations';

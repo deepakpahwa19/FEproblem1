@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { DropDownView } from '../../views';
+import { DropDownView } from './DropDown.view';
 import PropTypes from 'prop-types';
 
 export const DropDown = ({ name, options, onChangeHandler, isValid }) => {

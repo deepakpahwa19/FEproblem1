@@ -1,5 +1,5 @@
 import React from 'react';
-import { FooterView } from '../../views';
+import { FooterView } from './Footer.view';
 import PropTypes from 'prop-types';
 
 export const Footer = React.memo(({ children, justifyContent }) => {

@@ -1,16 +1,15 @@
-export { DropDownView } from './Dropdown/DropDownView';
+export { DropDownView } from '../components/DropDown/DropDown.view';
 export { RadioButton } from './RadioButton/RadioButton';
-export { FlexContainer } from './Containers/FlexContainer.element';
-export { JourneyCardView } from './features/FindFalcone/JourneyCardView/JourneyCardView';
+export { FlexContainer } from './Containers/FlexContainer.styled';
 export { RequiredElement } from './RequiredElement/RequiredElement';
-export { FooterView } from './Footer/FooterView';
+export { FooterView } from '../components/Footer/Footer.view';
 export { Spinner } from './SpinnerView/Spinner';
-export { Button } from './Button/Button';
+export { Button } from '../components/Button/Button';
 export { ErrorMessage } from './ErrorMessage/ErrorMessage';
-export { Backdrop } from './Backdrop/Backdrop';
-export { AutoComplete } from './AutoComplete/AutoComplete';
-export { AutoCompleteItem } from './AutoComplete/AutoCompleteItem/AutoCompleteItem';
-export { AnchorView } from './Anchor/AnchorView';
+export { Backdrop } from '../components/Backdrop/Backdrop';
+export { AutoComplete } from '../components/AutoComplete/AutoComplete';
+export { AutoCompleteItem } from '../components/AutoComplete/AutoCompleteItem/AutoCompleteItem';
+export { AnchorView } from '../components/Anchor/Anchor.view';
 export { MainSectionStyle } from './MainSection/MainSection.element';
 export {
     Nav,

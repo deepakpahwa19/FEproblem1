@@ -57,13 +57,13 @@ export const VehicleList = ({ name, journeyIndex }) => {
     }, [listOfVehicle, vehicle, dispatch, journeyIndex]);
 
     // Not showing Vehicle List if no destination is selected
-    if (!(planet || {}).name) {
+    if (!planet?.name) {
         return <></>;
     }
 
     return (
         <>
-            {!isValid && !(vehicle || {}).name && <RequiredElement />}
+            {!isValid && !vehicle?.name && <RequiredElement />}
             {remainingVehicles.map((currentVehicle, index) => (
                 <RadioButton
                     name={name}

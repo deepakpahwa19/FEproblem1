@@ -6,6 +6,10 @@ import { FindFalcone } from './components/';
 
 export const FindFalconeContext = React.createContext();
 
+/**
+ * @description Starting of the FindFalcone Feature
+ * @returns
+ */
 export const FindFalconeFeature = () => {
     const { destinations, isDestinationLoading } = useSelector(state => state.destinations);
     const { vehicles, isVehiclesLoading } = useSelector(state => state.vehicles);
@@ -21,6 +25,6 @@ export const FindFalconeFeature = () => {
     if (isVehiclesLoading || isDestinationLoading) return <Spinner />;
 
     return <FindFalcone destinations={destinations} vehicles={vehicles} />;
-    // return <Spinner />;
 };
+
 FindFalconeFeature.propTypes = {};

@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AutoComplete } from '../../../../views';
 import { FindFalconeContext } from '../../FindFalconeFeature';
 import { getJourneyNameWithIndex } from '../../constants/constants';
-import { getJourneyDestinationAction } from '../../state/actions/actions/journeyActions';
+import { getJourneyDestinationAction } from '../../state/actions/actions/journey.action';
 
 /**
  * @param {name} name
  * @param {journeyIndex} journeyIndex
- * @description An autocomplete dropdown
+ * @description Select the available destination
  * @returns
  */
 export const DestinationDropdown = ({ name, journeyIndex }) => {

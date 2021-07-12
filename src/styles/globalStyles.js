@@ -1,15 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-// const GlobalStyle = createGlobalStyle`
-//     * {
-//         box-sizing: border-box;
-//         margin: 0;
-//         padding: 0;
-//         font-family: 'Source Sans Pro', sans-serif;
-//     }
-
-// `;
-
 const GlobalStyles = createGlobalStyle`
 
   *,
@@ -59,6 +49,11 @@ const GlobalStyles = createGlobalStyle`
     margin: 10px auto;
   }
 
+  @media screen and (min-width: 900px) {
+    html {
+      font-size: 75%
+    }
+  }
 
 `;
 

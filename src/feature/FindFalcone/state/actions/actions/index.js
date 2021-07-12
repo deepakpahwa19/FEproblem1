@@ -1,10 +1,10 @@
-export { getDestinationsFailedAction, getDestinationsAction, getDestinationsSuccessAction } from './destinationActions';
-export { getVehiclesAction, getVehiclesFailedAction, getVehiclesSuccessAction } from './vehicleActions';
-export { getTokenAction, getTokenFailedAction, getTokenSuccessAction } from './tokenActions';
+export { getDestinationsFailedAction, getDestinationsAction, getDestinationsSuccessAction } from './destination.action';
+export { getVehiclesAction, getVehiclesFailedAction, getVehiclesSuccessAction } from './vehicle.action';
+export { getTokenAction, getTokenFailedAction, getTokenSuccessAction } from './token.action';
 export {
     getFindFalconeAction,
     getFindFalconeFailedAction,
     getFindFalconeSuccessAction,
     getResetFindFalconeAction
-} from './findFalconeActions';
-export { getJourneyVehicleAction, getResetJourneyAction } from './journeyActions';
+} from './findFalcone.action';
+export { getJourneyVehicleAction, getResetJourneyAction } from './journey.action';

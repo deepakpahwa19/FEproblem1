@@ -3,7 +3,7 @@ import { useDispatch, useSelector, batch } from 'react-redux';
 import { FlexContainer } from '../../../../views';
 import { Button } from '../../../../views';
 import { NavLink } from 'react-router-dom';
-import { getResetFindFalconeAction, getResetJourneyAction } from '../../state/actions/actions/';
+import { getResetFindFalconeAction, getResetJourneyAction } from '../../state/actions/actions';
 
 export const ResultFindFalcone = () => {
     const { planetName, timeTaken } = useSelector(state => state.findFalcone);

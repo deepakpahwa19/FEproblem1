@@ -34,12 +34,11 @@ export const DestinationDropdown = ({ name, journeyIndex }) => {
                     break;
                 }
             }
-        handleDropdownChange();
 
         // Removing the Null from the list
         const newDest = destinationList.filter(value => !!value);
         setRemainingDestination(newDest);
-    }, [listOfDestination, planet, destinations, journeyIndex, handleDropdownChange]);
+    }, [listOfDestination, planet, destinations, journeyIndex]);
 
     const handleDropdownChange = useCallback(
         value => {

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector, batch } from 'react-redux';
 import { Spinner } from '../../views';
-import { getDestinationsAction, getVehiclesAction } from './state/actions/actions/';
-import { FindFalcone } from './components/';
+import { getDestinationsAction, getVehiclesAction } from './state/actions/actions';
+import { FindFalcone } from './components';
 
 export const FindFalconeContext = React.createContext();
 

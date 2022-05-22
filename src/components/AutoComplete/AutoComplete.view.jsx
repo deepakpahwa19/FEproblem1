@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { RequiredElement } from '../../views';
+import { RequiredElement } from '../';
 import { AutoCompleteItem } from './AutoCompleteItem/AutoCompleteItem';
 import {
     DownArrowIcon,

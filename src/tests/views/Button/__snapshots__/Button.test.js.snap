@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Verifying Button in View Verifying Button click and name 1`] = `ShallowWrapper {}`;
-
-exports[`Verifying Button in View Verifying Button without click 1`] = `ShallowWrapper {}`;

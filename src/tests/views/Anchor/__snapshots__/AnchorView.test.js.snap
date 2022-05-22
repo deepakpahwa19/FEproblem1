@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`verifying Anchor in Views hide backdrop 1`] = `ShallowWrapper {}`;
-
-exports[`verifying Anchor in Views verifying Anchor text 1`] = `ShallowWrapper {}`;

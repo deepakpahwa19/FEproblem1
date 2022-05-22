@@ -2,11 +2,10 @@ import React, { useCallback, useContext, useState, useEffect, useRef } from 'rea
 import { useDispatch, useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
-import { RadioButton } from '../../../../views';
 import { FindFalconeContext } from '../../FindFalconeFeature';
 import { getJourneyNameWithIndex } from '../../constants/constants';
 import { getJourneyVehicleAction } from '../../state/actions/actions';
-import { RequiredElement } from '../../../../views';
+import { RequiredElement, RadioButton } from '../../../../components';
 
 export const VehicleList = ({ name, journeyIndex }) => {
     const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]) || {};

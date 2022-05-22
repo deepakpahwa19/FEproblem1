@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AutoComplete } from '../../../../views';
+import { AutoComplete } from '../../../../components';
 import { FindFalconeContext } from '../../FindFalconeFeature';
 import { getJourneyNameWithIndex } from '../../constants/constants';
 import { getJourneyDestinationAction } from '../../state/actions/actions/journey.action';

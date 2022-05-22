@@ -1,5 +1,5 @@
 import { Navbar, Footer } from '../../components';
-import { AnchorView, MainSectionStyle } from '../../views';
+import { AnchorView, MainSectionStyle } from '../../components';
 import { Routes } from '../../routes/routes';
 
 export const HomePage = () => {

@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { JourneyCard } from '../';
 import { RedirectToResult } from '../../../../routes/routes';
-import { Spinner, Button, ErrorMessage, FlexContainer } from '../../../../views';
+import { Spinner, Button, ErrorMessage } from '../../../../components';
+import { FlexContainer } from '../../../../styles/FlexContainer.styled';
 import { listOfCards } from '../../config/findFalcon.config';
 
 export const FindFalconeView = ({

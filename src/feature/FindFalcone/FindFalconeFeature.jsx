@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Spinner } from '../../views';
+import { Spinner } from '../../components';
 import { getDestinationsAction, getVehiclesAction } from './state/actions/actions/';
 import { FindFalcone } from './components/';
 
@@ -16,7 +16,6 @@ export const FindFalconeFeature = () => {
     const dispatch = useDispatch();
     const { key } = useSelector(state => state.findFalcone);
 
-    console.log('key : ', key);
     useEffect(() => {
         dispatch(getDestinationsAction());
         dispatch(getVehiclesAction());
@@ -24,7 +23,7 @@ export const FindFalconeFeature = () => {
 
     if (isVehiclesLoading || isDestinationLoading) return <Spinner />;
 
-    return <FindFalcone key={key} keyValue={key} destinations={destinations} vehicles={vehicles} />;
+    return <FindFalcone key={key} destinations={destinations} vehicles={vehicles} />;
 };
 
 FindFalconeFeature.propTypes = {};

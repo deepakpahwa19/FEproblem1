@@ -1,6 +1,8 @@
 import { FIND_FALCONE_ACTION_TYPES } from '../actions/actionTypes';
 import { updateState } from '../../../../redux/reducers/reducerUtil';
 
+const getRandomKey = () => Math.floor(Math.random() * 1000);
+
 const initialAction = {
     token: '',
     status: '',
@@ -11,7 +13,7 @@ const initialAction = {
     timeTake: '',
     planetName: '',
     isLoading: false,
-    key: Math.floor(Math.random() * 1000)
+    key: getRandomKey()
 };
 
 export const findFalconeReducer = (state = initialAction, action) => {
@@ -24,7 +26,7 @@ export const findFalconeReducer = (state = initialAction, action) => {
         case FIND_FALCONE_ACTION_TYPES.FIND_FALCONE_FAILED:
             return updateState(state, action.payload, { isLoading: false });
         case FIND_FALCONE_ACTION_TYPES.RESET_FIND_FALCONE:
-            return { ...initialAction, key: Math.floor(Math.random() * 1000) };
+            return { ...initialAction, key: getRandomKey() };
         default:
             break;
     }

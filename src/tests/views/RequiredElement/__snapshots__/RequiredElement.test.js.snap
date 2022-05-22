@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Verifying RequiredElement in View Verifying RequiredElement default message 1`] = `ShallowWrapper {}`;
-
-exports[`Verifying RequiredElement in View Verifying RequiredElement passed message 1`] = `ShallowWrapper {}`;

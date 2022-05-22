@@ -1,8 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { RequiredElement } from '../../views';
-import { AutoCompleteItem } from './AutoCompleteItem/AutoCompleteItem';
 import { AutoCompleteView } from './AutoComplete.view';
 
 export const AutoComplete = ({ id, options, onSelect, isValid }) => {

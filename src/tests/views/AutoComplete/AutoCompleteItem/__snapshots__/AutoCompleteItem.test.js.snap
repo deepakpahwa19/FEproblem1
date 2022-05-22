@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Verifying AutoCompleteItem in View Verifying AutoCompleteItem click and name 1`] = `ShallowWrapper {}`;
-
-exports[`Verifying AutoCompleteItem in View Verifying AutoCompleteItem default snapshot 1`] = `ShallowWrapper {}`;

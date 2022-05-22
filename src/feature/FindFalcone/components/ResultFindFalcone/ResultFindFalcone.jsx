@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector, batch } from 'react-redux';
-import { FlexContainer } from '../../../../views';
-import { Button } from '../../../../views';
+import { FlexContainer } from '../../../../styles/FlexContainer.styled';
+import { Button } from '../../../../components';
 import { NavLink } from 'react-router-dom';
 import { getResetFindFalconeAction, getResetJourneyAction } from '../../state/actions/actions/';
 

@@ -1,5 +1,5 @@
 {
-    "extends": ["react-app", "prettier/react", "prettier"],
+    "extends": ["prettier/react", "prettier"],
     "plugins": ["react", "react-hooks", "prettier"],
     "rules": {
         "prettier/prettier": 0,

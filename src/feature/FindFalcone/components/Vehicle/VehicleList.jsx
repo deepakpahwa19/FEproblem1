@@ -20,7 +20,7 @@ export const VehicleList = ({ name, journeyIndex }) => {
     const handleVehicleSelect = useCallback(
         event => {
             const vehicleName = event.target.value;
-            const prevVehicleName = (vehicle || {}).name;
+            const prevVehicleName = vehicle?.name;
             for (let currentVehicle of listOfVehicle) {
                 if (currentVehicle.name === vehicleName) {
                     dispatch(getJourneyVehicleAction(currentVehicle, journeyIndex));

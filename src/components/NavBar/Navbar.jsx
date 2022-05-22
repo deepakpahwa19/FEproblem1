@@ -29,7 +29,7 @@ export const Navbar = () => {
                 <NavbarContainer>
                     <NavLogo to='/'>
                         <NavIcon />
-                        Find Queen
+                        Find Falcone
                     </NavLogo>
                     <MobileIcon onClick={handleClick}>{click ? <FaTimes /> : <FaBars />}</MobileIcon>
                     <NavMenu onClick={handleClick} click={click}>

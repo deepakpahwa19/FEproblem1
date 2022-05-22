@@ -10,8 +10,8 @@ export const getVehiclesAPI = () => {
         })
         .catch(error => {
             if (error.response) {
-                const { status } = error.response;
-                return errorObject(status, 500, error.message);
+                const { status, errorCode = 500 } = error.response;
+                return errorObject(status, errorCode, error.message);
             } else if (error.request) {
                 return errorObject('', API_ERRORS.NO_RESPONSE_RECEIVED, error.message);
             } else {

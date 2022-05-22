@@ -11,7 +11,8 @@ export const FindFalconeView = ({
     errorMessage,
     falconeFound,
     isLoading,
-    isValid
+    isValid,
+    onClickResetHandler
 }) => {
     if (falconeFound) {
         return <RedirectToResult />;
@@ -32,7 +33,12 @@ export const FindFalconeView = ({
                 ))}
             </FlexContainer>
             <h4>Total Time: {timeTaken}</h4>
-            <Button onClick={handleFindFalconeClick}>Find Falcone</Button>
+            <FlexContainer justify='space-between'>
+                <Button onClick={onClickResetHandler}>Reset</Button>
+                <Button onClick={handleFindFalconeClick} variant='primary'>
+                    Find Falcone
+                </Button>
+            </FlexContainer>
         </FlexContainer>
     );
 };
@@ -41,7 +47,8 @@ FindFalconeView.propTypes = {
     timeTaken: PropTypes.number,
     handleFindFalconeClick: PropTypes.func.isRequired,
     errorMessage: PropTypes.string,
-    falconeFound: PropTypes.bool,
+    falconeFound: PropTypes.string,
     isLoading: PropTypes.bool,
-    isValid: PropTypes.bool
+    isValid: PropTypes.bool,
+    onClickResetHandler: PropTypes.func
 };

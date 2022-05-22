@@ -13,7 +13,7 @@ import { getJourneyDestinationAction } from '../../state/actions/actions/journey
  * @description Select the available destination
  * @returns
  */
-export const DestinationDropdown = ({ name, journeyIndex }) => {
+export const Destination = ({ name, journeyIndex }) => {
     const [remainingDestination, setRemainingDestination] = useState([]);
     const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(journeyIndex)]);
     const dispatch = useDispatch();
@@ -42,8 +42,8 @@ export const DestinationDropdown = ({ name, journeyIndex }) => {
 
     const handleDropdownChange = useCallback(
         value => {
-            const prevValue = (planet || {}).name;
-            const [selectedPlanet] = destinations.filter(destination => (destination || {}).name === value);
+            const prevValue = planet?.name;
+            const [selectedPlanet] = destinations.filter(destination => destination?.name === value);
             // Updating the vehicle name total_no in through Context API
             if (vehicle) updateVehicles(vehicle.name, '');
             // Updating parent component to not allow other dropdowns to use this value.
@@ -60,13 +60,13 @@ export const DestinationDropdown = ({ name, journeyIndex }) => {
                 id={name}
                 options={remainingDestination}
                 onSelect={handleDropdownChange}
-                isValid={!isValid && !(planet || {}).name}
+                isValid={!isValid && !planet?.name}
             />
         )
     );
 };
 
-DestinationDropdown.propTypes = {
+Destination.propTypes = {
     name: PropTypes.string,
     journeyIndex: PropTypes.number
 };

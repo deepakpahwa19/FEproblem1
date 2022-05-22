@@ -1,13 +1,13 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFindFalconeAction } from '../../state/actions/actions';
-import { listOfCards } from '../../config/findFalcon.config';
 
 import { FindFalconeContext } from '../../FindFalconeFeature';
 import { useDestinations } from '../../customHooks/useDestinations';
 import { useVehicles } from '../../customHooks/useVehicles';
 import { FindFalconeView } from './FindFalcone.view';
+import { listOfCards } from '../../config/findFalcon.config';
+import { getFindFalconeAction, getResetFindFalconeAction, getResetJourneyAction } from '../../state/actions/actions';
 
 /**
  * @param {destinations}
@@ -16,21 +16,20 @@ import { FindFalconeView } from './FindFalcone.view';
  */
 
 export const FindFalcone = ({ destinations, vehicles }) => {
-    const [listOfDestination, updateDestinations] = useDestinations(destinations);
+    const [isValid, setIsValid] = useState(true);
 
+    const [listOfDestination, updateDestinations] = useDestinations(destinations);
     const [listOfVehicle, updateVehicles] = useVehicles(vehicles);
 
     const { errorMessage, falconeFound, isLoading } = useSelector(state => state.findFalcone);
-
     const journeys = useSelector(state => state.journey);
-    const [isValid, setIsValid] = useState(true);
 
     const dispatch = useDispatch();
 
     const timeTaken = useMemo(() => {
         let sum = 0;
         Object.values(journeys).forEach(({ planet, vehicle }) => {
-            if ((planet || {}).distance && (vehicle || {}).speed) {
+            if (planet?.distance && vehicle?.speed) {
                 sum += planet.distance / vehicle.speed;
             }
         });
@@ -42,8 +41,8 @@ export const FindFalcone = ({ destinations, vehicles }) => {
             selectedVehicles = [];
 
         Object.values(journeys).forEach(({ planet, vehicle }) => {
-            if (!!(planet || {}).name) selectedPlanets.push(planet.name);
-            if (!!(vehicle || {}).name) selectedVehicles.push(vehicle.name);
+            if (!!planet?.name) selectedPlanets.push(planet.name);
+            if (!!vehicle?.name) selectedVehicles.push(vehicle.name);
         });
 
         if (selectedPlanets.length === listOfCards.length && selectedVehicles.length === listOfCards.length) {
@@ -53,6 +52,11 @@ export const FindFalcone = ({ destinations, vehicles }) => {
             setIsValid(false);
         }
     }, [journeys, dispatch, timeTaken]);
+
+    const onClickResetHandler = useCallback(() => {
+        dispatch(getResetFindFalconeAction());
+        dispatch(getResetJourneyAction());
+    }, [dispatch]);
 
     return (
         <FindFalconeContext.Provider
@@ -72,6 +76,7 @@ export const FindFalcone = ({ destinations, vehicles }) => {
                 falconeFound={falconeFound}
                 isLoading={isLoading}
                 isValid={isValid}
+                onClickResetHandler={onClickResetHandler}
             />
         </FindFalconeContext.Provider>
     );

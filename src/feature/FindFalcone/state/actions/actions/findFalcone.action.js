@@ -20,5 +20,5 @@ export const getFindFalconeFailedAction = payload => ({
 });
 
 export const getResetFindFalconeAction = () => {
-    return { type: FIND_FALCONE_ACTION_TYPES.RESET_FIND_FALCONE, payload: {} };
+    return { type: FIND_FALCONE_ACTION_TYPES.RESET_FIND_FALCONE };
 };

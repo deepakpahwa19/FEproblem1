@@ -27,8 +27,8 @@ export const findFalconeAPI = requestBody => {
         .catch(error => {
             console.log('findFalconeAPI =>', error, error.response, error.message);
             if (error.response) {
-                const { status, data } = error.response;
-                return errorObject(status, '', data.error);
+                const { status, data, errorCode = 500 } = error.response;
+                return errorObject(status, errorCode, data.error);
             } else if (error.request) {
                 return errorObject('', API_ERRORS.NO_RESPONSE_RECEIVED, error.message);
             } else {

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledButton = styled.button`
     border-radius: 4px;
-    background: ${({ primary }) => (primary ? '#4B59F7' : '#0467FB')};
+    background: ${({ variant }) => (variant === 'primary' ? '#4B59F7' : 'gray')};
     white-space: nowrap;
     padding: ${({ big }) => (big ? '12px 64px' : '10px 20px')};
     color: #fff;
@@ -10,7 +10,7 @@ export const StyledButton = styled.button`
     outline: none;
     border: none;
     cursor: pointer;
-    margin: auto;
+    margin: 2rem auto;
 
     &:hover {
         transition: all 0.3s ease-out;

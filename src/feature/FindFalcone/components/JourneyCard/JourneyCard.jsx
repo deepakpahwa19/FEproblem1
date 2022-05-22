@@ -8,7 +8,7 @@ export const JourneyCard = React.memo(({ index, isValid }) => {
     const { planet, vehicle } = useSelector(state => state.journey[getJourneyNameWithIndex(index)]) || {};
 
     const isJourneyNotValid = useMemo(() => {
-        return (!isValid && !planet?.name) || !vehicle?.name;
+        return !isValid && (!planet?.name || !vehicle?.name);
     }, [planet, vehicle, isValid]);
 
     return <JourneyCardView isJourneyNotValid={isJourneyNotValid} index={index} />;

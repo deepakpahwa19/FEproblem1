@@ -17,30 +17,29 @@ import {
 
 export const AutoCompleteView = ({
     id,
-    onSelect,
     isValid,
     searchContainerRef,
-    onClickHandler,
+    onClickSearchBarHandler,
     inputValue,
     isVisible,
-    onKeyDownHandler,
-    onChangeHandler,
+    onKeyDownInputHandler,
+    onChangeInputHandler,
     searchResultRef,
-    onSelectHandler,
+    onSelectHandler: onClickItemHandler,
     cursor,
     suggestions
 }) => {
     return (
         <AutoCompleteStyle ref={searchContainerRef} id={id}>
             {isValid && <RequiredElement />}
-            <SearchBarStyle onClick={onClickHandler}>
+            <SearchBarStyle onClick={onClickSearchBarHandler}>
                 <SearchInputStyle
                     type='text'
                     name='search'
                     autoComplete='off'
                     value={inputValue}
-                    onChange={e => onChangeHandler(e.target.value)}
-                    onKeyDown={e => onKeyDownHandler(e)}
+                    onChange={e => onChangeInputHandler(e.target.value)}
+                    onKeyDown={e => onKeyDownInputHandler(e)}
                 />
                 {isVisible ? <UpArrowIcon /> : <DownArrowIcon />}
             </SearchBarStyle>
@@ -50,8 +49,8 @@ export const AutoCompleteView = ({
                     {suggestions.map((item, index) => (
                         <RowStyle key={item}>
                             <AutoCompleteItem
-                                onSelectItem={() => {
-                                    onSelectHandler(item);
+                                onClickItemHandler={() => {
+                                    onClickItemHandler(item);
                                 }}
                                 isHighlighted={cursor === index}
                                 name={item}
@@ -67,6 +66,15 @@ export const AutoCompleteView = ({
 
 AutoCompleteView.propTypes = {
     id: PropTypes.string,
-    onSelect: PropTypes.func,
-    isValid: PropTypes.bool
+    isValid: PropTypes.bool,
+    searchContainerRef: PropTypes.object,
+    onClickSearchBarHandler: PropTypes.func,
+    inputValue: PropTypes.string,
+    isVisible: PropTypes.bool,
+    onKeyDownInputHandler: PropTypes.func,
+    onChangeInputHandler: PropTypes.func,
+    searchResultRef: PropTypes.object,
+    onClickItemHandler: PropTypes.func,
+    cursor: PropTypes.number,
+    suggestions: PropTypes.arrayOf(PropTypes.string)
 };

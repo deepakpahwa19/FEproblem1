@@ -17,7 +17,7 @@ export const HomePage = () => {
                 <Routes />
             </MainSectionStyle>
             <Footer justifyContent='center'>
-                <AnchorView href='' anchorName='Coding problem - ManMade' />
+                <AnchorView href='' anchorName='Coding problem - GeekTrust' />
             </Footer>
         </>
     );

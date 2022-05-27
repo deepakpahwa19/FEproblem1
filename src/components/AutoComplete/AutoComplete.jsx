@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { AutoCompleteView } from './AutoComplete.view';
 
-export const AutoComplete = ({ id, options, onSelect, isValid }) => {
+export const AutoComplete = ({ id, options = [], onSelect = () => {} }) => {
     const [isVisible, setVisible] = useState(false);
     const [search, setSearch] = useState('');
     const [cursor, setCursor] = useState(-1);
@@ -11,11 +11,18 @@ export const AutoComplete = ({ id, options, onSelect, isValid }) => {
     const searchContainer = useRef(null);
     const searchResultRef = useRef(null);
 
-    const handleClickOutside = useCallback(event => {
-        if (searchContainer.current && !searchContainer.current.contains(event.target)) {
-            hideSuggestion();
-        }
-    }, []);
+    const showSuggestion = useCallback(() => setVisible(true), []);
+
+    const hideSuggestion = useCallback(() => setVisible(false), []);
+
+    const handleClickOutside = useCallback(
+        event => {
+            if (searchContainer.current && !searchContainer.current.contains(event.target)) {
+                hideSuggestion();
+            }
+        },
+        [hideSuggestion]
+    );
 
     useEffect(() => {
         window.addEventListener('mousedown', handleClickOutside);
@@ -50,29 +57,28 @@ export const AutoComplete = ({ id, options, onSelect, isValid }) => {
         listItems[cursor] && scrollIntoView(listItems[cursor].offsetTop);
     }, [cursor, suggestions, scrollIntoView]);
 
-    const showSuggestion = () => setVisible(true);
-
-    const hideSuggestion = () => setVisible(false);
-
-    const keyboardNavigation = e => {
-        if (e.key === 'ArrowDown') {
-            isVisible ? setCursor(c => (c < suggestions.length - 1 ? c + 1 : 0)) : showSuggestion();
-        } else if (e.key === 'ArrowUp') {
-            setCursor(c => (c > 0 ? c - 1 : suggestions.length - 1));
-        } else if (e.key === 'Escape') {
-            hideSuggestion();
-        } else if (e.key === 'Enter' && cursor >= 0) {
-            setSearch(suggestions[cursor]);
-            hideSuggestion();
-            onSelect(suggestions[cursor]);
-        } else if (e.key === 'Backspace' || e.key === 'Delete') {
-            setSearch('');
-            hideSuggestion();
-            onSelect('');
-        } else {
-            showSuggestion();
-        }
-    };
+    const keyboardNavigation = useCallback(
+        e => {
+            if (e.key === 'ArrowDown') {
+                isVisible ? setCursor(c => (c < suggestions.length - 1 ? c + 1 : 0)) : showSuggestion();
+            } else if (e.key === 'ArrowUp') {
+                setCursor(c => (c > 0 ? c - 1 : suggestions.length - 1));
+            } else if (e.key === 'Escape') {
+                hideSuggestion();
+            } else if (e.key === 'Enter' && cursor >= 0) {
+                setSearch(suggestions[cursor]);
+                hideSuggestion();
+                onSelect(suggestions[cursor]);
+            } else if (e.key === 'Backspace' || e.key === 'Delete') {
+                setSearch('');
+                hideSuggestion();
+                onSelect('');
+            } else {
+                showSuggestion();
+            }
+        },
+        [cursor, hideSuggestion, isVisible, onSelect, showSuggestion, suggestions]
+    );
 
     const onSelectHandler = item => {
         hideSuggestion();
@@ -85,11 +91,11 @@ export const AutoComplete = ({ id, options, onSelect, isValid }) => {
             <AutoCompleteView
                 searchContainerRef={searchContainer}
                 id={id}
-                onClickHandler={showSuggestion}
+                onClickSearchBarHandler={showSuggestion}
                 inputValue={search}
                 isVisible={isVisible}
-                onKeyDownHandler={keyboardNavigation}
-                onChangeHandler={setSearch}
+                onKeyDownInputHandler={keyboardNavigation}
+                onChangeInputHandler={setSearch}
                 searchResultRef={searchResultRef}
                 onSelectHandler={onSelectHandler}
                 cursor={cursor}
@@ -100,8 +106,7 @@ export const AutoComplete = ({ id, options, onSelect, isValid }) => {
 };
 
 AutoComplete.propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.string.isRequired,
     options: PropTypes.array,
-    onSelect: PropTypes.func,
-    isValid: PropTypes.bool
+    onSelect: PropTypes.func
 };

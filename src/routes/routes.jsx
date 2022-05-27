@@ -16,7 +16,3 @@ export const Routes = React.memo(() => {
 export const RedirectToResult = () => {
     return <Redirect to='/findFalcone/result' />;
 };
-
-export const RedirectToHomePage = () => {
-    return <Redirect to='/' />;
-};

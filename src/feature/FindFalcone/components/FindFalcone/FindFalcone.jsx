@@ -7,7 +7,7 @@ import { useDestinations } from '../../customHooks/useDestinations';
 import { useVehicles } from '../../customHooks/useVehicles';
 import { FindFalconeView } from './FindFalcone.view';
 import { listOfCards } from '../../config/findFalcon.config';
-import { getFindFalconeAction, getResetFindFalconeAction, getResetJourneyAction } from '../../state/actions/actions';
+import { getFindFalconeAction } from '../../state/actions/actions';
 
 /**
  * @param {destinations}
@@ -53,11 +53,6 @@ export const FindFalcone = ({ destinations, vehicles }) => {
         }
     }, [journeys, dispatch, timeTaken]);
 
-    const onClickResetHandler = useCallback(() => {
-        dispatch(getResetFindFalconeAction());
-        dispatch(getResetJourneyAction());
-    }, [dispatch]);
-
     return (
         <FindFalconeContext.Provider
             value={{
@@ -76,7 +71,6 @@ export const FindFalcone = ({ destinations, vehicles }) => {
                 falconeFound={falconeFound}
                 isLoading={isLoading}
                 isValid={isValid}
-                onClickResetHandler={onClickResetHandler}
             />
         </FindFalconeContext.Provider>
     );

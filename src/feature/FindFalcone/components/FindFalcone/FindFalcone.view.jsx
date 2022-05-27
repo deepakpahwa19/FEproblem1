@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { JourneyCard } from '../';
-import { RedirectToResult } from '../../../../routes/routes';
-import { Spinner, Button, ErrorMessage } from '../../../../components';
+import { Button, ErrorMessage } from '../../../../components';
 import { FlexContainer } from '../../../../styles/FlexContainer.styled';
 import { listOfCards } from '../../config/findFalcon.config';
+import { Shimmer } from '../../../../components/Shimmer/Shimmer';
+import { RedirectToResult } from '../../../../routes/routes';
 
 export const FindFalconeView = ({
     timeTaken,
@@ -12,15 +13,13 @@ export const FindFalconeView = ({
     errorMessage,
     falconeFound,
     isLoading,
-    isValid,
-    onClickResetHandler
+    isValid
 }) => {
     if (falconeFound) {
         return <RedirectToResult />;
     }
-
     if (isLoading) {
-        return <Spinner />;
+        return <Shimmer />;
     }
 
     return (
@@ -34,12 +33,9 @@ export const FindFalconeView = ({
                 ))}
             </FlexContainer>
             <h4>Total Time: {timeTaken}</h4>
-            <FlexContainer justify='space-between'>
-                <Button onClick={onClickResetHandler}>Reset</Button>
-                <Button onClick={handleFindFalconeClick} variant='primary'>
-                    Find Falcone
-                </Button>
-            </FlexContainer>
+            <Button onClick={handleFindFalconeClick} variant='primary'>
+                Find Falcone
+            </Button>
         </FlexContainer>
     );
 };
@@ -50,6 +46,5 @@ FindFalconeView.propTypes = {
     errorMessage: PropTypes.string,
     falconeFound: PropTypes.string,
     isLoading: PropTypes.bool,
-    isValid: PropTypes.bool,
-    onClickResetHandler: PropTypes.func
+    isValid: PropTypes.bool
 };

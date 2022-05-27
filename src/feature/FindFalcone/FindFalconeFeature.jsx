@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Spinner } from '../../components';
 import { getDestinationsAction, getVehiclesAction } from './state/actions/actions/';
 import { FindFalcone } from './components/';
+import { Shimmer } from '../../components/Shimmer/Shimmer';
 
 export const FindFalconeContext = React.createContext();
 
@@ -21,8 +21,7 @@ export const FindFalconeFeature = () => {
         dispatch(getVehiclesAction());
     }, [dispatch]);
 
-    if (isVehiclesLoading || isDestinationLoading) return <Spinner />;
-
+    if (isVehiclesLoading || isDestinationLoading) return <Shimmer />;
     return <FindFalcone key={key} destinations={destinations} vehicles={vehicles} />;
 };
 

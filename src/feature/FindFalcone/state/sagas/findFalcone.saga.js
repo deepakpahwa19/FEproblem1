@@ -7,7 +7,6 @@ import { getFindFalconeFailedAction, getFindFalconeSuccessAction } from '../acti
 function* findFalconeActionSaga(action) {
     let findFalconeApiResponse;
     const tokenApiResponse = yield getTokenAPI();
-    console.log('token api response', tokenApiResponse);
     if (tokenApiResponse.status !== STATUS.SUCCESS) {
         yield put(getFindFalconeFailedAction(tokenApiResponse));
     } else {
@@ -15,7 +14,6 @@ function* findFalconeActionSaga(action) {
         const { timeTaken, ...newPayload } = action.payload;
         const payload = { ...newPayload, token: tokenApiResponse.token };
         findFalconeApiResponse = yield findFalconeAPI(payload);
-        console.log('findFalconeApiResponse =>', findFalconeApiResponse);
         switch (findFalconeApiResponse.status) {
             case STATUS.SUCCESS:
                 yield put(getFindFalconeSuccessAction(findFalconeApiResponse));

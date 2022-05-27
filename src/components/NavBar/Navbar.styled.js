@@ -61,8 +61,8 @@ export const NavMenu = styled.ul`
         width: 100%;
         height: 90vh;
         position: absolute;
-        top: 80px;
-        left: ${({ click }) => (click ? 0 : '-100%')};
+        top: 50px;
+        right: ${({ click }) => (click ? 0 : '-100%')};
         opacity: 1;
         transition: all 0.5s ease;
         background: #101522;
@@ -70,7 +70,6 @@ export const NavMenu = styled.ul`
 `;
 
 export const NavItem = styled.li`
-    height: 80px;
     border-bottom: 2px solid transparent;
 
     @media screen and (max-width: 960px) {
@@ -101,6 +100,7 @@ export const NavLinks = styled(Link)`
         }
     }
 `;
+
 export const NavItemBtn = styled.li`
     @media screen and (max-width: 960px) {
         display: flex;

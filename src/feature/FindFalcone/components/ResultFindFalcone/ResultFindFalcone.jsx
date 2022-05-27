@@ -1,20 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector, batch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FlexContainer } from '../../../../styles/FlexContainer.styled';
 import { Button } from '../../../../components';
 import { NavLink } from 'react-router-dom';
 import { getResetFindFalconeAction, getResetJourneyAction } from '../../state/actions/actions/';
+import { ResetNavLink } from '../ResetNavLink/ResetNavLink';
 
 export const ResultFindFalcone = () => {
     const { planetName, timeTaken } = useSelector(state => state.findFalcone);
-    const dispatch = useDispatch();
-
-    const handleOnClick = () => {
-        batch(() => {
-            dispatch(getResetFindFalconeAction());
-            dispatch(getResetJourneyAction());
-        });
-    };
 
     let content = null;
     if (!!planetName) {
@@ -34,9 +27,7 @@ export const ResultFindFalcone = () => {
             <h1>Finding Falcone!</h1>
             <FlexContainer direction='column' margin='40px auto'>
                 {content}
-                <NavLink to='/findFalcone' style={{ margin: 'auto' }}>
-                    <Button onClick={handleOnClick}>Start Again</Button>
-                </NavLink>
+                <ResetNavLink buttonName='Start Again' />
             </FlexContainer>
         </FlexContainer>
     );

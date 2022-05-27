@@ -1,18 +1,13 @@
-import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { Navbar, Footer } from '../../components';
 import { AnchorView, MainSectionStyle } from '../../components';
 import { NavItem } from '../../components';
 import { Routes } from '../../routes/routes';
 
 export const HomePage = () => {
-    const dispatch = useDispatch();
-
     return (
         <>
-            <Navbar>
-                <NavItem></NavItem>
-            </Navbar>
+            <Navbar />
             <MainSectionStyle>
                 <Routes />
             </MainSectionStyle>

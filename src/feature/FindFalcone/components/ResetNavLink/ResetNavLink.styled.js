@@ -3,5 +3,5 @@ import styled from 'styled-components';
 
 export const ResetLink = styled(NavLink)`
     text-decoration: none;
-    color: ${props => props.color || '#fff'};
+    color: ${props => props.color || props.theme.colors.powderWhite};
 `;

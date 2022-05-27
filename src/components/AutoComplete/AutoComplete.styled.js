@@ -10,7 +10,6 @@ export const SearchBarStyle = styled.div`
     width: 100%;
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    /* background: transparent; */
     padding: 0.5rem;
     &:focus {
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -19,8 +18,8 @@ export const SearchBarStyle = styled.div`
 
 export const SearchInputStyle = styled.input`
     border: none;
-    font-size: 1.5rem;
-    padding-left: 0.5rem;
+    font-size: ${props => props.theme.fontSizes.sm};
+    padding-left: ${props => props.theme.margin.xs};
     height: 100%;
     width: 90%;
     &:focus {
@@ -32,9 +31,9 @@ export const SearchResultStyle = styled.div`
     width: 100%;
     max-height: 25rem;
     z-index: 1300;
-    background-color: #fff;
+    background-color: ${props => props.theme.colors.powderWhite};
     overflow-y: auto;
-    padding-inline: 0.5rem;
+    padding-inline: ${props => props.theme.margin.xs};
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.28);
     visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
 `;

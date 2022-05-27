@@ -15,6 +15,6 @@ export const JourneyCard = React.memo(({ index, isValid }) => {
 });
 
 JourneyCard.propTypes = {
-    index: PropTypes.number,
+    index: PropTypes.number.isRequired,
     isValid: PropTypes.bool
 };

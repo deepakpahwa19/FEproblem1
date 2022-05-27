@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { JourneyCard } from '../';
+import { JourneyCard } from '../JourneyCard/JourneyCard';
 import { Button, ErrorMessage } from '../../../../components';
 import { FlexContainer } from '../../../../styles/FlexContainer.styled';
 import { listOfCards } from '../../config/findFalcon.config';
@@ -9,7 +9,7 @@ import { RedirectToResult } from '../../../../routes/routes';
 
 export const FindFalconeView = ({
     timeTaken,
-    handleFindFalconeClick,
+    onClickFindFalconeHandler,
     errorMessage,
     falconeFound,
     isLoading,
@@ -33,7 +33,7 @@ export const FindFalconeView = ({
                 ))}
             </FlexContainer>
             <h4>Total Time: {timeTaken}</h4>
-            <Button onClick={handleFindFalconeClick} variant='primary'>
+            <Button onClick={onClickFindFalconeHandler} variant='primary'>
                 Find Falcone
             </Button>
         </FlexContainer>
@@ -41,8 +41,8 @@ export const FindFalconeView = ({
 };
 
 FindFalconeView.propTypes = {
-    timeTaken: PropTypes.number,
-    handleFindFalconeClick: PropTypes.func.isRequired,
+    timeTaken: PropTypes.number.isRequired,
+    onClickFindFalconeHandler: PropTypes.func.isRequired,
     errorMessage: PropTypes.string,
     falconeFound: PropTypes.string,
     isLoading: PropTypes.bool,

@@ -46,10 +46,10 @@ const GlobalStyles = createGlobalStyle`
 
   h1, h2, h3, h4, h5, h6 {
     text-align: center;
-    margin: 10px auto;
+    margin: 1rem auto;
   }
 
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: 991px) {
     html {
       font-size: 75%
     }
@@ -60,7 +60,6 @@ const GlobalStyles = createGlobalStyle`
 export default GlobalStyles;
 
 export const Container = styled.div`
-    z-index: 1;
     width: 100%;
     max-width: 1300px;
     margin-right: auto;

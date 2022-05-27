@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { Input, Label } from './RadioButton.styled';
 
 export const RadioButton = React.memo(({ name, value, isChecked, isDisabled, onChangeHandler, label }) => {
     return (
@@ -26,10 +26,3 @@ RadioButton.propTypes = {
     onChangeHandler: PropTypes.func,
     label: PropTypes.string
 };
-
-const Label = styled.label`
-    padding: 2px;
-`;
-const Input = styled.input`
-    margin-right: 10px;
-`;

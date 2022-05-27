@@ -40,7 +40,7 @@ export const Destination = ({ name, journeyIndex }) => {
         setRemainingDestination(newDest);
     }, [listOfDestination, planet, destinations, journeyIndex]);
 
-    const handleDropdownChange = useCallback(
+    const onChangeDropdownHandler = useCallback(
         value => {
             const prevValue = planet?.name;
             const [selectedPlanet] = destinations.filter(destination => destination?.name === value);
@@ -59,7 +59,7 @@ export const Destination = ({ name, journeyIndex }) => {
             <AutoComplete
                 id={name}
                 options={remainingDestination}
-                onSelect={handleDropdownChange}
+                onSelect={onChangeDropdownHandler}
                 isValid={!isValid && !planet?.name}
             />
         )
@@ -67,6 +67,6 @@ export const Destination = ({ name, journeyIndex }) => {
 };
 
 Destination.propTypes = {
-    name: PropTypes.string,
-    journeyIndex: PropTypes.number
+    name: PropTypes.string.isRequired,
+    journeyIndex: PropTypes.number.isRequired
 };

@@ -36,7 +36,7 @@ export const FindFalcone = ({ destinations, vehicles }) => {
         return sum;
     }, [journeys]);
 
-    const handleFindFalconeClick = useCallback(() => {
+    const onClickFindFalconeHandler = useCallback(() => {
         const selectedPlanets = [],
             selectedVehicles = [];
 
@@ -66,7 +66,7 @@ export const FindFalcone = ({ destinations, vehicles }) => {
         >
             <FindFalconeView
                 timeTaken={timeTaken}
-                handleFindFalconeClick={handleFindFalconeClick}
+                onClickFindFalconeHandler={onClickFindFalconeHandler}
                 errorMessage={errorMessage}
                 falconeFound={falconeFound}
                 isLoading={isLoading}

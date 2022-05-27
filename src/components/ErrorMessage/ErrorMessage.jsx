@@ -7,6 +7,6 @@ export const ErrorMessage = React.memo(({ children }) => {
 
 const ErrorMessageUI = styled.h5`
     margin: 1rem;
-    color: red;
+    color: ${props => props.theme.colors.red};
     text-align: center;
 `;

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { FaTimes, FaBars } from 'react-icons/fa';
-import { IconContext } from 'react-icons/lib';
 import { ResetNavLink } from '../../feature/FindFalcone/components/ResetNavLink/ResetNavLink';
-import { Nav, NavbarContainer, NavIcon, NavLogo, MobileIcon, NavMenu, NavItem } from './Navbar.styled';
+import { AnchorView } from '../Anchor/Anchor.view';
+import { Nav, NavbarContainer, NavIcon, NavLogo, NavMenu, NavItem } from './Navbar.styled';
 
 export const Navbar = () => {
     const [click, setClick] = useState(false);
@@ -25,22 +24,22 @@ export const Navbar = () => {
     }, []);
 
     return (
-        <IconContext.Provider value={{ color: '#fff' }}>
-            <Nav>
-                <NavbarContainer>
-                    <NavLogo to='/'>
-                        <NavIcon />
-                        Find Falcone
-                    </NavLogo>
-                    <MobileIcon onClick={handleClick}>{click ? <FaTimes /> : <FaBars />}</MobileIcon>
-                    <NavMenu onClick={handleClick} click={click}>
-                        <NavItem>
-                            <ResetNavLink />
-                        </NavItem>
-                    </NavMenu>
-                </NavbarContainer>
-            </Nav>
-        </IconContext.Provider>
+        <Nav>
+            <NavbarContainer>
+                <NavLogo to='/'>
+                    <NavIcon />
+                    Find Falcone
+                </NavLogo>
+                <NavMenu onClick={handleClick} click={click}>
+                    <NavItem>
+                        <ResetNavLink />
+                    </NavItem>
+                    <NavItem>
+                        <AnchorView anchorName='GeekTrust' href='https://www.geektrust.com/coding/detailed/space' />
+                    </NavItem>
+                </NavMenu>
+            </NavbarContainer>
+        </Nav>
     );
 };
 

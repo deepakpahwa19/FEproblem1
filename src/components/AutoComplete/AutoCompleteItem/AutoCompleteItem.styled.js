@@ -5,11 +5,11 @@ export const StyledListItem = styled.li`
     margin: 0.2rem;
     list-style: none;
 
-    background-color: ${({ active }) => (active ? '#e1e3e5' : '')};
-    border-color: ${({ active }) => (active ? '#d3d5d7' : '')};
+    background-color: ${({ active, theme }) => (active ? theme.colors.lightGrey : '')};
+    border-color: ${({ active, theme }) => (active ? theme.colors.darkerGrey : '')};
 
     & :hover {
-        background-color: #e1e3e5;
-        border-color: #d3d5d7;
+        background-color: ${props => props.theme.colors.lightGrey};
+        border-color: ${props => props.theme.colors.darkerGrey};
     }
 `;

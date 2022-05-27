@@ -27,7 +27,7 @@ export const ResultFindFalcone = () => {
             <h1>Finding Falcone!</h1>
             <FlexContainer direction='column' margin='40px auto'>
                 {content}
-                <ResetNavLink buttonName='Start Again' />
+                <ResetNavLink name='Start Again' />
             </FlexContainer>
         </FlexContainer>
     );

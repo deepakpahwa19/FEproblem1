@@ -1,12 +1,15 @@
 import GlobalStyles from './styles/globalStyles';
 import { HomePage } from './pages/HomePage/HomePage';
-// import { DestinationAutoComplete } from './components/AutoComplete/DestinationAutoComplete';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/theme';
 
 function App() {
     return (
         <>
             <GlobalStyles />
-            <HomePage />
+            <ThemeProvider theme={theme}>
+                <HomePage />
+            </ThemeProvider>
         </>
     );
 }

@@ -1,5 +1,5 @@
 export { Navbar } from './NavBar/Navbar';
-export { NavItem, NavLinks } from './NavBar/Navbar.styled';
+export { NavItem } from './NavBar/Navbar.styled';
 export { Footer } from './Footer/Footer';
 export { AutoComplete } from './AutoComplete/AutoComplete';
 export { Button } from './Button/Button';

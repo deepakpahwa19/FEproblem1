@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledAnchor = styled.a`
-    color: #fff;
+    color: ${props => props.theme.colors.powderWhite};
     text-decoration: none;
 `;

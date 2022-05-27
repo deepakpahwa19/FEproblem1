@@ -6,7 +6,7 @@ export const StyledFooter = styled.footer`
     left: 0;
     height: 5rem;
     width: 100%;
-    background-color: #101522;
+    background-color: ${props => props.theme.colors.black};
 `;
 
 export const StyledSection = styled.section`

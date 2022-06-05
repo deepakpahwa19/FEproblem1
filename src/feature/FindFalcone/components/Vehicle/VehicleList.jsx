@@ -16,7 +16,7 @@ export const VehicleList = ({ name, journeyIndex }) => {
 
     const { listOfVehicle = [], updateVehicles, isValid } = useContext(FindFalconeContext);
 
-    const onClickVehicleHandler = useCallback(
+    const onChangeVehicleHandler = useCallback(
         event => {
             const vehicleName = event.target.value;
             const prevVehicleName = vehicle?.name;
@@ -37,9 +37,10 @@ export const VehicleList = ({ name, journeyIndex }) => {
         let newSelectedVehicle = {};
         for (let currentVehicle of listOfVehicle) {
             if (vehicle && vehicle.name === currentVehicle.name) {
-                if (currentVehicle.total_no < vehicle.total_no) list.push({ ...vehicle });
+                if (currentVehicle.total_no < vehicle.total_no)
+                    list.push({ ...vehicle, total_no: vehicle.total_no - 1 });
                 else if (currentVehicle.total_no === vehicle.total_no) {
-                    newSelectedVehicle = { ...vehicle, total_no: vehicle.total_no + 1 };
+                    newSelectedVehicle = { ...vehicle, total_no: currentVehicle.total_no + 1 };
                     list.push(newSelectedVehicle);
                 }
             } else {
@@ -70,7 +71,7 @@ export const VehicleList = ({ name, journeyIndex }) => {
                     key={`${name}-${currentVehicle.name}`}
                     isChecked={(vehicle && vehicle.name === currentVehicle.name) || false}
                     isDisabled={currentVehicle.max_distance < planet.distance || currentVehicle.total_no <= 0}
-                    onChangeHandler={onClickVehicleHandler}
+                    onChangeHandler={onChangeVehicleHandler}
                     label={`${currentVehicle.name} (${currentVehicle.total_no})`}
                 />
             ))}

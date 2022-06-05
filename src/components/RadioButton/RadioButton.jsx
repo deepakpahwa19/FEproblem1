@@ -11,7 +11,7 @@ export const RadioButton = React.memo(({ name, value, isChecked, isDisabled, onC
                 value={value}
                 checked={isChecked}
                 onChange={onChangeHandler}
-                disabled={isDisabled}
+                disabled={!isChecked && isDisabled}
             />
             {label}
         </Label>
